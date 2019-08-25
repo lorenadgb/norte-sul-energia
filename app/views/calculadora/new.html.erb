@@ -1,0 +1,244 @@
+<%= render 'layouts/shared/carousel', slide: 2 %>
+
+<section class="services">
+  <div class="container">
+    <div class="box carousel">
+
+      <div class="row">
+        <div class="col-md-12">
+
+          <div class="row">
+            <div class="nav-main-text" style="text-align: center;font-size: 60px;font-weight: 600;">
+              <div id="calculadora">CALCULADORA SOLAR</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <%= simple_form_for @calculadora, url: url_for(action: 'resultado', controller: 'calculadora', anchor: 'rede-eletrica'), method: 'post' do |f| %>
+            <div id="rede-eletrica">
+              <div class="form-group">
+                <p>
+                  1. O local possui acesso à rede elétrica?
+                </p>
+
+                <div class="calculadora-imgs">
+                  <%= f.collection_radio_buttons(:rede_eletrica, [['sim', '/icons/check'] ,['nao', '/icons/checkbox']], :first, :last, class: 'threads-opts') do |b| %>
+                    <%= b.label { b.radio_button(class: 'threads-opts') + image_tag(b.text+'.png') } %>
+                  <% end %>
+                </div>
+
+                <p>
+                  2. Onde pretende realizar a instalação?
+                </p>
+
+                <div class="col-md-6">
+                  <%= f.input :estado, prompt: 'ESTADO', collection: State.all, label: false, input_html: { class: 'form-control'}, sytle: 'padding-right: 1px' %>
+                </div>
+
+                <div class="col-md-6">
+                  <%= f.input :cidade, prompt: 'CIDADE', collection: City.all, label: false, input_html: { class: 'form-control'} %>
+                </div>
+
+                <p style="padding-top: 90px">
+                  3. Qual o tipo do local da instalação?
+                </p>
+
+                <%= f.collection_radio_buttons(:local, [['residencial', '/icons/residencial_azul'], ['comercial', '/icons/comercial_azul'], ['outro', '/icons/outro_azul']], :first, :last, item_wrapper_tag: "div class='col-md-3 col-md-offset-1'", class: 'threads-opts') do |b| %>
+                  <%= b.label { b.radio_button(class: 'threads-opts') + image_tag(b.text+'.png') } %>
+                <% end %>
+
+                <div class="row">
+                  <div class="col-md-6 col-md-offset-3 ajuste">
+                    <%= f.input :ajuste, label: false, placeholder: 'AJUSTE DA TARIFA EM R$' ,input_html: { class: 'form-control center-block', style: 'text-align:center;'} %>
+                  </div>
+                </div>
+
+                <p>
+                  4. Quanto você paga de energia por mês?
+                </p>
+
+                <div class="valor-slider">
+                  <div class="row">
+                    <div class="col-md-1">
+                      <%= image_tag 'menor.png' %>
+                    </div>
+                    <div class="col-md-10">
+                      <div id="slider"></div>
+                    </div>
+                    <div class="col-md-1">
+                      <%= image_tag 'maior.png' %>
+                    </div>
+                  </div>
+                </div>
+
+                <center> <%= f.button :submit, 'VER RESULTADO', class: 'btn btn-primary-outline', style: 'width: 350px' %> </center>
+              </div>
+
+              <div id="sem-rede-eletrica">
+                <div class="form-group">
+                  <p style="font-size: 20px">
+                    2. Para sistemas Off-grid insira seus dados abaixo que entraremos em contato.
+                  </p>
+
+                  <div class="col-md-12">
+                    <%= f.input :nome, placeholder: 'NOME', label: false, input_html: { class: 'form-control'} %>
+                  </diV>
+
+                  <div class="col-md-12">
+                    <%= f.input :email, placeholder: 'E-MAIL', label: false, input_html: { class: 'form-control'} %>
+                  </diV>
+
+                  <div class="col-md-12">
+                    <%= f.input :telefone, placeholder: 'TELEFONE', label: false, input_html: { class: 'form-control', style: 'margin-bottom: 40px'} %>
+                  </div>
+                </div>
+
+                <center> <%= f.button :submit, 'ENVIAR', :class=> "btn btn-primary", style: 'width: 350px' %> </center>
+
+              </div>
+
+            </div>
+
+         <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+
+        initPreferences = function () {
+            //Added, set initial value.
+            $("#amount").val(7500);
+            $("#duration").val(7500);
+            $("#amount-label").text(7500);
+            $("#duration-label").text(7500);
+
+            update();
+
+            $('.calculadora_rede_eletrica_sim').prop('checked', true);
+
+            $('#calculadora_rede_eletrica_sim').next('img').attr("src", "/icons/check.png");
+            $('#calculadora_rede_eletrica_nao').next('img').attr("src", "/icons/checkbox.png");
+
+            $("#rede-eletrica").show();
+            $("#sem-rede-eletrica").hide();
+        }();
+
+
+        $("#calculadora_estado").change(function() {
+            getCitiesByState("id="+$("#calculadora_estado").val());
+        });
+
+        $("#calculadora_cidade").change(function() {
+            getStateByCity("id="+$("#calculadora_cidade").val());
+        });
+
+        function getCitiesByState(id) {
+            $.getJSON("/cities_by_state", id, function (j) {
+                var options = '<option value="">CIDADE</option>';
+                $.each(j.cty, function (i, item) {
+                    options += '<option value="' + item.id + '">' + item.n + '</option>';
+                });
+                $("#calculadora_cidade").html(options);
+            });
+        }
+
+        function getStateByCity(id) {
+            $.getJSON("/state_by_city", id, function (j) {
+                $("#calculadora_estado").val(j['state']['id']);
+            });
+        }
+
+        $("input[name='calculadora[rede_eletrica]']").click(function(){
+            switch($(this).val()) {
+                case 'sim':
+                    $('#calculadora_rede_eletrica_sim').next('img').attr("src", "/icons/check.png");
+                    $('#calculadora_rede_eletrica_nao').next('img').attr("src", "/icons/checkbox.png");
+
+                    $("#rede-eletrica").show();
+                    $("#sem-rede-eletrica").hide();
+
+                    break;
+                case 'nao':
+                    $('#calculadora_rede_eletrica_sim').next('img').attr("src", "/icons/checkbox.png");
+                    $('#calculadora_rede_eletrica_nao').next('img').attr("src", "/icons/check.png");
+
+                    $("#rede-eletrica").hide();
+                    $("#sem-rede-eletrica").show();
+
+                    break;
+            }
+        });
+
+        $("input[name='calculadora[local]']").click(function(){
+            switch($(this).val()) {
+                case 'residencial':
+                    $('#calculadora_local_residencial').next('img').attr("src", "/icons/residencial_amarelo.png");
+                    $('#calculadora_local_comercial').next('img').attr("src", "/icons/comercial_azul.png");
+                    $('#calculadora_local_outro').next('img').attr("src", "/icons/outro_azul.png");
+
+                    break;
+                case 'comercial':
+                    $('#calculadora_local_residencial').next('img').attr("src", "/icons/residencial_azul.png");
+                    $('#calculadora_local_comercial').next('img').attr("src", "/icons/comercial_amarelo.png");
+                    $('#calculadora_local_outro').next('img').attr("src", "/icons/outro_azul.png");
+
+                    break;
+
+                case 'outro':
+                    $('#calculadora_local_residencial').next('img').attr("src", "/icons/residencial_azul.png");
+                    $('#calculadora_local_comercial').next('img').attr("src", "/icons/comercial_azul.png");
+                    $('#calculadora_local_outro').next('img').attr("src", "/icons/outro_amarelo.png");
+
+                    break;
+            }
+        });
+
+        $("#slider").slider({
+            animate: true,
+            value:7500,
+            min: 100,
+            max: 15000,
+            step: 10,
+            slide: function(event, ui) {
+                update(1,ui.value);
+            }
+        });
+
+        //changed. now with parameter
+        function update(slider,val) {
+
+            //changed. Now, directly take value from ui.value. if not set (initial, will use current value.)
+            var $amount = slider == 1?val:$("#amount").val();
+            var $duration = slider == 2?val:$("#duration").val();
+
+            if ($amount == undefined) {
+                $amount = 7500;
+                $duration = 1;
+            }
+
+            /* commented
+            $amount = $( "#slider" ).slider( "value" );
+             */
+
+            $total = "$" + ($amount * $duration);
+            $( "#amount" ).val($amount);
+            $( "#amount-label" ).text($amount);
+            $( "#duration" ).val($duration);
+            $( "#duration-label" ).text($duration);
+            $( "#total" ).val($total);
+            $( "#total-label" ).text($total);
+
+            $('#slider a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+$amount+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
+        }
+
+    });
+</script>

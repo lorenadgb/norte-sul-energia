@@ -27,7 +27,18 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  config.assets.compile = true
+
+  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+
+  if ENV["RAILS_LOG_TO_STDOUT"].present?
+    logger           = ActiveSupport::Logger.new(STDOUT)
+    logger.formatter = config.log_formatter
+    config.logger = ActiveSupport::TaggedLogging.new(logger)
+  end
+
+  config.serve_static_assets = true
+  config.assets.digest = true
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
@@ -72,6 +83,7 @@ Rails.application.configure do
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
+  config.serve_static_assets = true
 
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
@@ -82,6 +94,21 @@ Rails.application.configure do
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
+
+  config.action_mailer.default_url_options   = { :host => ENV['HOST'] }
+  config.action_mailer.delivery_method       = :smtp
+  config.action_mailer.perform_deliveries    = true
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default :charset      => "utf-8"
+  config.action_mailer.smtp_settings = {
+      address:              'smtp.gmail.com',
+      port:                 587,
+      domain:               'nortesulenergia.com',
+      user_name:            ENV['EMAIL'],
+      password:             ENV['PASSWORD'],
+      authentication:       'plain',
+      enable_starttls_auto: true
+  }
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)

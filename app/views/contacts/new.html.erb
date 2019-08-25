@@ -1,0 +1,99 @@
+<header class="contato">
+  <div class="container">
+
+    <%= render 'layouts/shared/links' %>
+
+    <br>
+
+    <br><br><br>
+
+  </div>
+</header>
+
+<section class="services">
+  <div class="container">
+    <div class="box contato">
+
+      <div class="row">
+        <div class="col-md-12">
+
+          <%= render 'layouts/shared/flash_messages' %>
+
+          <div class="nav-left-text">
+            <div class="rdg-expertise-description rdg-strategy-bg rdg-animated-delay-0 text-right" style="float: left;"></div>
+
+            <p style="font-size: 22px; color: black">CONTATO</p>
+            <p style="font-size: 46px; margin-top: 10px; color: #2d5c82">FALE COM A NORTE SUL</p>
+          </div>
+        </div>
+      </div>
+
+<!--      <div class="row">-->
+<!--        <div class="col-md-12">-->
+<!--          <p style="font-size: 16px">Para receber um orcamento sem compromisso da NORTE SUL basta preencher os campos dos formularios abaixo. A nossa equipe entrara em contato o mais breve possivel.</p>-->
+<!--        </div>-->
+<!--      </div>-->
+
+      <div class="row">
+        <%= simple_form_for @contact do |f| %>
+          <div class="form-group">
+            <div class="col-md-12">
+              <%= f.input :name, placeholder: 'NOME', required: true, label: false, input_html: { class: 'form-control'} %>
+            </diV>
+
+            <div class="col-md-12">
+              <%= f.input :email, placeholder: 'E-MAIL', required: true, label: false, input_html: { class: 'form-control'} %>
+            </diV>
+
+            <div class="col-md-12">
+              <%= f.input :telephone, placeholder: 'TELEFONE', required: true, label: false, input_html: { class: 'form-control'} %>
+            </div>
+
+            <div class="col-md-6">
+              <%= f.input :state, prompt: 'ESTADO', collection: State.all, required: true, label: false, input_html: { class: 'form-control'} %>
+            </div>
+
+            <div class="col-md-6">
+              <%= f.input :city, prompt: 'CIDADE', collection: City.all, required: true, label: false, input_html: { class: 'form-control'} %>
+            </div>
+
+            <div class="col-md-12">
+              <%= f.input :message, as: :text, placeholder: 'MENSAGEM', required: true, label: false, input_html: { class: 'form-control', :cols => 5, :rows => 10 } %>
+            </div>
+
+            <center> <%= f.button :submit, 'ENVIAR', class: 'btn btn-primary', style: 'width: 250px' %> </center>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+    $("#contact_state").change(function() {
+        getCitiesByState("id="+$("#contact_state").val());
+    });
+
+    $("#contact_city").change(function() {
+        getStateByCity("id="+$("#contact_city").val());
+    });
+
+    $('#contact_telephone').phoneBrazil();
+
+    function getCitiesByState(id) {
+        $.getJSON("/cities_by_state", id, function (j) {
+            var options = '<option value="">CIDADE</option>';
+            $.each(j.cty, function (i, item) {
+                options += '<option value="' + item.id + '">' + item.n + '</option>';
+            });
+            $("#contact_city").html(options);
+        });
+    }
+
+    function getStateByCity(id) {
+        $.getJSON("/state_by_city", id, function (j) {
+            $("#contact_state").val(j['state']['id']);
+        });
+    }
+</script>
