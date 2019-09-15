@@ -17,10 +17,19 @@
 
       <div class="row">
         <div class="col-md-12">
-          <%= simple_form_for @calculadora, url: url_for(action: 'resultado', controller: 'calculadora', anchor: 'rede-eletrica'), method: 'post' do |f| %>
+          <%= simple_form_for @calculadora, url: url_for(action: 'resultado', controller: 'calculadora', anchor: 'init'), method: 'post' do |f| %>
             <%= hidden_field_tag :local_value %>
 
-            <div id="rede-eletrica">
+            <div id="init"></div>
+
+              <% if @calculadora.errors.any? %>
+              <div class="alert alert-danger" role="alert">
+                  <% @calculadora.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </div>
+              <% end %>
+
               <div class="form-group">
                 <p>
                   1. O local possui acesso à rede elétrica?
@@ -32,52 +41,54 @@
                   <% end %>
                 </div>
 
-                <p>
-                  2. Onde pretende realizar a instalação?
-                </p>
+                <div id="rede-eletrica">
 
-                <div class="col-md-6">
-                  <%= f.input :estado, prompt: 'ESTADO', collection: State.all, label: false, input_html: { class: 'form-control'}, sytle: 'padding-right: 1px' %>
-                </div>
+                  <p>
+                    2. Onde pretende realizar a instalação?
+                  </p>
 
-                <div class="col-md-6">
-                  <%= f.input :cidade, prompt: 'CIDADE', collection: City.all, label: false, input_html: { class: 'form-control'} %>
-                </div>
-
-                <p style="padding-top: 90px">
-                  3. Qual o tipo do local da instalação?
-                </p>
-
-                <%= f.collection_radio_buttons(:local, [['residencial', '/icons/residencial_azul'], ['comercial', '/icons/comercial_azul'], ['outro', '/icons/outro_azul']], :first, :last, item_wrapper_tag: "div class='col-md-3 col-md-offset-1'", class: 'threads-opts') do |b| %>
-                  <%= b.label { b.radio_button(class: 'threads-opts') + image_tag(b.text+'.png') } %>
-                <% end %>
-
-                <div class="row">
-                  <div class="col-md-6 col-md-offset-3 ajuste">
-                    <%= f.input :ajuste, label: false, placeholder: 'AJUSTE DA TARIFA EM R$' ,input_html: { class: 'form-control center-block', style: 'text-align:center !important;'} %>
+                  <div class="col-md-6">
+                    <%= f.input :estado, prompt: 'ESTADO', collection: State.all, label: false, input_html: { class: 'form-control'}, sytle: 'padding-right: 1px' %>
                   </div>
-                </div>
 
-                <p>
-                  4. Quanto você paga de energia por mês?
-                </p>
+                  <div class="col-md-6">
+                    <%= f.input :cidade, prompt: 'CIDADE', collection: City.all, label: false, input_html: { class: 'form-control'} %>
+                  </div>
 
-                <div class="valor-slider">
+                  <p style="padding-top: 90px">
+                    3. Qual o tipo do local da instalação?
+                  </p>
+
+                  <%= f.collection_radio_buttons(:local, [['residencial', '/icons/residencial_azul'], ['comercial', '/icons/comercial_azul'], ['outro', '/icons/outro_azul']], :first, :last, item_wrapper_tag: "div class='col-md-3 col-md-offset-1'", class: 'threads-opts') do |b| %>
+                    <%= b.label { b.radio_button(class: 'threads-opts') + image_tag(b.text+'.png') } %>
+                  <% end %>
+
                   <div class="row">
-                    <div class="col-md-1">
-                      <%= image_tag 'menor.png' %>
-                    </div>
-                    <div class="col-md-10">
-                      <div id="slider"></div>
-                    </div>
-                    <div class="col-md-1">
-                      <%= image_tag 'maior.png' %>
+                    <div class="col-md-6 col-md-offset-3 ajuste">
+                      <%= f.input :ajuste, label: false, placeholder: 'AJUSTE DA TARIFA EM R$' ,input_html: { class: 'form-control center-block', style: 'text-align:center !important;'} %>
                     </div>
                   </div>
-                </div>
 
-                <center> <%= f.button :submit, 'VER RESULTADO', class: 'btn btn-primary-outline', style: 'width: 350px' %> </center>
-              </div>
+                  <p>
+                    4. Quanto você paga de energia por mês?
+                  </p>
+
+                  <div class="valor-slider">
+                    <div class="row">
+                      <div class="col-md-1">
+                        <%= image_tag 'menor.png' %>
+                      </div>
+                      <div class="col-md-10">
+                        <div id="slider"></div>
+                      </div>
+                      <div class="col-md-1">
+                        <%= image_tag 'maior.png' %>
+                      </div>
+                    </div>
+                  </div>
+
+                  <center> <%= f.button :submit, 'VER RESULTADO', class: 'btn btn-primary-outline', style: 'width: 350px' %> </center>
+                </div>
 
               <div id="sem-rede-eletrica">
                 <div class="form-group">
@@ -94,11 +105,11 @@
                   </diV>
 
                   <div class="col-md-12">
-                    <%= f.input :telefone, placeholder: 'TELEFONE', label: false, input_html: { class: 'form-control', style: 'margin-bottom: 40px'} %>
+                    <%= f.input :telefone, placeholder: 'TELEFONE', label: false, input_html: { class: 'form-control'} %>
                   </div>
                 </div>
 
-                <center> <%= f.button :submit, 'ENVIAR', :class=> "btn btn-primary", style: 'width: 350px' %> </center>
+                <center> <%= f.button :submit, 'ENVIAR', :class=> "btn btn-primary", style: 'width: 350px; margin-top: 40px' %> </center>
 
               </div>
 
@@ -125,13 +136,8 @@
 
             update();
 
-            $('.calculadora_rede_eletrica_sim').prop('checked', true);
-
             $('#calculadora_rede_eletrica_sim').next('img').attr("src", "/icons/check.png");
             $('#calculadora_rede_eletrica_nao').next('img').attr("src", "/icons/checkbox.png");
-
-            $("#rede-eletrica").show();
-            $("#sem-rede-eletrica").hide();
 
             $("#calculadora_ajuste").inputmask('decimal', {
                 'alias': 'numeric',
@@ -139,6 +145,16 @@
                 // 'digits': 2,
                 // 'prefix': 'R$ ',
             });
+
+            if($("input[name='calculadora[rede_eletrica]']:checked").val() == 'sim') {
+                $("#rede-eletrica").show();
+                $("#sem-rede-eletrica").hide();
+                $('#calculadora_rede_eletrica_sim').prop('checked', true).trigger("click");
+            } else {
+                $("#rede-eletrica").hide();
+                $("#sem-rede-eletrica").show();
+                $('#calculadora_rede_eletrica_nao').prop('checked', true).trigger("click");
+            }
 
             $('#calculadora_ajuste').css('text-align','center');
         }();
