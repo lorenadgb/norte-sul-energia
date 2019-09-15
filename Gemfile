@@ -21,6 +21,7 @@ gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'prawn', '~> 2.1'
 gem 'combine_pdf'
+gem 'jquery-inputmask-rails'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 
