@@ -54,7 +54,7 @@
 
                 <div class="row">
                   <div class="col-md-6 col-md-offset-3 ajuste">
-                    <%= f.input :ajuste, label: false, placeholder: 'AJUSTE DA TARIFA EM R$' ,input_html: { class: 'form-control center-block', style: 'text-align:center;'} %>
+                    <%= f.input :ajuste, label: false, placeholder: 'AJUSTE DA TARIFA EM R$' ,input_html: { class: 'form-control center-block', style: 'text-align:center !important;'} %>
                   </div>
                 </div>
 
@@ -132,6 +132,15 @@
 
             $("#rede-eletrica").show();
             $("#sem-rede-eletrica").hide();
+
+            $("#calculadora_ajuste").inputmask('decimal', {
+                'alias': 'numeric',
+                // 'groupSeparator': ',',
+                // 'digits': 2,
+                // 'prefix': 'R$ ',
+            });
+
+            $('#calculadora_ajuste').css('text-align','center');
         }();
 
 
@@ -147,8 +156,6 @@
 
         function getFeeByState() {
             let local = $("#local_value").val();
-
-            debugger;
 
             if(local != undefined && $("#calculadora_estado").val() != undefined){
                 $.ajax({
