@@ -18,6 +18,8 @@
       <div class="row">
         <div class="col-md-12">
           <%= simple_form_for @calculadora, url: url_for(action: 'resultado', controller: 'calculadora', anchor: 'rede-eletrica'), method: 'post' do |f| %>
+            <%= hidden_field_tag :local_value %>
+
             <div id="rede-eletrica">
               <div class="form-group">
                 <p>
@@ -135,11 +137,45 @@
 
         $("#calculadora_estado").change(function() {
             getCitiesByState("id="+$("#calculadora_estado").val());
+
+            getFeeByState();
         });
 
         $("#calculadora_cidade").change(function() {
             getStateByCity("id="+$("#calculadora_cidade").val());
         });
+
+        function getFeeByState() {
+            let local = $("#local_value").val();
+
+            debugger;
+
+            if(local != undefined && $("#calculadora_estado").val() != undefined){
+                $.ajax({
+                    type: 'GET',
+                    data:{
+                        state_id: $("#calculadora_estado").val(),
+                        local:    $("input[name='calculadora[local]']").val(),
+                    },
+                    url: '/fee_by_state/',
+
+                    success: function(data){
+
+                        switch(local) {
+                            case 'residencial':
+                                $("#calculadora_ajuste").val(data['state']['residencial']);
+                                break;
+                            case 'comercial':
+                                $("#calculadora_ajuste").val(data['state']['comercial']);
+                                break;
+                            case 'outro':
+                                $("#calculadora_ajuste").val(data['state']['outro']);
+                                break;
+                        }
+                    }
+                });
+            }
+        }
 
         function getCitiesByState(id) {
             $.getJSON("/cities_by_state", id, function (j) {
@@ -179,6 +215,10 @@
         });
 
         $("input[name='calculadora[local]']").click(function(){
+            $("#local_value").val($(this).val());
+
+            getFeeByState();
+
             switch($(this).val()) {
                 case 'residencial':
                     $('#calculadora_local_residencial').next('img').attr("src", "/icons/residencial_amarelo.png");

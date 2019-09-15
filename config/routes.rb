@@ -14,4 +14,5 @@ Rails.application.routes.draw do
 
   get 'cities_by_state', to: 'cities#cities_by_state'
   get 'state_by_city',   to: 'states#state_by_city'
+  get 'fee_by_state',    to: 'states#fee_by_state'
 end

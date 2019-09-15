@@ -6,4 +6,10 @@ class StatesController < ApplicationController
     render json: {state: city.state}.as_json
   end
 
+  def fee_by_state
+    state = State.find(params[:state_id])
+
+    render json: {state: state}.as_json
+  end
+
 end
