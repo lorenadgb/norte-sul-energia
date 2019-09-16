@@ -14,10 +14,48 @@ class Calculadora
       media:  'Energia por mês'
   }
 
+  MEDIA_DIAS_POR_MES   = 30
+  MEDIA_HORAS_BRASIL   = 4
+  MEDIA_MINIMA         = 4500
+  MEDIA_MAXIMA         = 5500
+  NUMERO_MESES_ANO     = 12
+  NUMERO_MESES_25_ANOS = NUMERO_MESES_ANO * 25
+
   def self.human_attribute_name(attr, options = {}) # 'options' wasn't available in Rails 3, and prior versions.
     HUMANIZED_ATTRIBUTES[attr.to_sym] || super
   end
 
+  def kwp
+    return unless valid?
+
+    kw = media.to_f / ajuste.to_f
+
+    (kw / MEDIA_DIAS_POR_MES) / MEDIA_HORAS_BRASIL
+  end
+
+  def investimento_minimo
+    kwp * MEDIA_MINIMA
+  end
+
+  def investimento_maximo
+    kwp * MEDIA_MAXIMA
+  end
+
+  def economia_mensal
+    media.to_f
+  end
+
+  def economia_anual
+    economia_mensal * NUMERO_MESES_ANO
+  end
+
+  def economia_25_anos
+    economia_mensal * NUMERO_MESES_25_ANOS
+  end
+
+  def retorno
+    (investimento_minimo / economia_mensal) / NUMERO_MESES_ANO
+  end
 
   private
 

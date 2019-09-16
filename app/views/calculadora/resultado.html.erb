@@ -26,17 +26,17 @@
               <h4 class="title card-title"><%= image_tag '/icons/resultado_investimento.png', style: 'height: 50px; border: 0; padding: 0' %>INVESTIMENTO</h4>
             </figcaption>
             <div class="bottom-wrap">
-              <p>De R$ 1.000,00 a R$ 5.000,00</p>
+              <p>De <%= number_to_currency(@calculadora.investimento_minimo) %> a <%= number_to_currency(@calculadora.investimento_maximo) %></p>
               <hr style="height:2px;border:none;color:gray;background-color:gray;padding-left: 50px;width: 50px;">
               <p>Economia mensal:</p>
-              <p>De R$ 1.000,00</p>
+              <p><%= number_to_currency(@calculadora.media) %></p>
               <p>Economia anual:</p>
-              <p>De R$ 1.000,00</p>
-              <p>Economia total em 30 anos:</p>
-              <p>De R$ 1.000,00</p>
-            </div> <!-- bottom-wrap.// -->
+              <p><%= number_to_currency(@calculadora.economia_anual) %></p>
+              <p>Economia total em 25 anos:</p>
+              <p><%= number_to_currency(@calculadora.economia_25_anos) %></p>
+            </div>
           </figure>
-        </div> <!-- col // -->
+        </div>
 
         <div class="col-md-4">
           <figure class="card card-product">
@@ -50,9 +50,9 @@
               <p>Redução de CO2 na atmosfera</p>
               <p>Equivalente a centenas  de árvores plantadas</p>
               <p>Equivalente a milhares  de KM rodados de um  carro</p>
-            </div> <!-- bottom-wrap.// -->
+            </div>
           </figure>
-        </div> <!-- col // -->
+        </div>
 
         <div class="col-md-4">
           <figure class="card card-product">
@@ -60,18 +60,18 @@
               <h4 class="title card-title"><%= image_tag '/icons/resultado_sistema.png', style: 'height: 50px; border: 0; padding: 0' %>SISTEMA INDICADO</h4>
             </figcaption>
             <div class="bottom-wrap">
-              <p>kWp</p>
+              <p><%= number_with_delimiter(@calculadora.kwp.round(2)) %> kWp</p>
               <hr style="height:2px;border:none;color:gray;background-color:gray;padding-left: 50px;width: 50px;">
               <p>Tamanho da Potência:</p>
-              <p>kWp</p>
+              <p><%= number_with_delimiter(@calculadora.kwp.round(2)) %> kWp</p>
               <p>Número de Módulos:</p>
               <p>10 módulos</p>
               <p>Produção Estimada:</p>
               <p>10.000 kw/h</p>
-            </div> <!-- bottom-wrap.// -->
+            </div>
           </figure>
-        </div> <!-- col // -->
-      </div> <!-- row.// -->
+        </div>
+      </div>
 
       <div class="col-md-6">
         <%= link_to 'REINCIAR CALCULADORA', new_calculadora_path(anchor: 'calculadora'), class: 'btn btn-primary btn-block pull-right' %>
@@ -90,23 +90,8 @@
 <script>
     $(document).ready(function(){
         init = function () {
-            $('#download_pdf')[0].click();
-
-            $(window).scrollTop($('#download_pdf').offset().top);
+            //$('#download_pdf')[0].click();
+            //$(window).scrollTop($('#download_pdf').offset().top);
         }();
-
-        // function ajaxRequest(){
-        //     $.ajax({
-        //         type: 'GET',
-        //         data:{
-        //           pdf_name: $("#pdf_name").val(),
-        //         },
-        //         url: '/download_pdf/',
-        //
-        //         success: function(data){
-        //         }
-        //     });
-        // };
-
     });
 </script>
