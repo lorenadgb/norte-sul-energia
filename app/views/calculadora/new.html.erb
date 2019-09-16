@@ -37,7 +37,7 @@
 
                 <div class="calculadora-imgs">
                   <%= f.collection_radio_buttons(:rede_eletrica, [['sim', '/icons/check'] ,['nao', '/icons/checkbox']], :first, :last, class: 'threads-opts') do |b| %>
-                    <%= b.label { b.radio_button(class: 'threads-opts') + image_tag(b.text+'.png') } %>
+                    <%= b.label { b.radio_button(class: 'threads-opts') + image_tag(b.text+'.png') + 'SIM' } %>
                   <% end %>
                 </div>
 
@@ -60,7 +60,7 @@
                   </p>
 
                   <%= f.collection_radio_buttons(:local, [['residencial', '/icons/residencial_azul'], ['comercial', '/icons/comercial_azul'], ['outro', '/icons/outro_azul']], :first, :last, item_wrapper_tag: "div class='col-md-3 col-md-offset-1'", class: 'threads-opts') do |b| %>
-                    <%= b.label { b.radio_button(class: 'threads-opts') + image_tag(b.text+'.png') } %>
+                    <%= b.label { b.radio_button(class: 'threads-opts') + image_tag(b.text+'.png') + 'RESIDENCIAL' } %>
                   <% end %>
 
                   <div class="row">
@@ -75,13 +75,13 @@
 
                   <div class="valor-slider">
                     <div class="row">
-                      <div class="col-md-1">
+                      <div class="col-md-2">
                         <%= image_tag 'menor.png' %>
                       </div>
-                      <div class="col-md-10">
+                      <div class="col-md-8">
                         <div id="slider"></div>
                       </div>
-                      <div class="col-md-1">
+                      <div class="col-md-2">
                         <%= image_tag 'maior.png' %>
                       </div>
                     </div>
@@ -126,13 +126,14 @@
 
 <script>
     $(document).ready(function(){
+        const startAmount = 7500;
 
         initPreferences = function () {
             //Added, set initial value.
-            $("#amount").val(7500);
-            $("#duration").val(7500);
-            $("#amount-label").text(7500);
-            $("#duration-label").text(7500);
+            $("#amount").val(startAmount);
+            $("#duration").val(startAmount);
+            $("#amount-label").text(startAmount);
+            $("#duration-label").text(startAmount);
 
             update();
 
@@ -264,10 +265,9 @@
                     break;
             }
         });
-
         $("#slider").slider({
             animate: true,
-            value:7500,
+            value:startAmount,
             min: 100,
             max: 15000,
             step: 10,
@@ -275,6 +275,7 @@
                 update(1,ui.value);
             }
         });
+        $('#slider a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+ startAmount +' <span class="glyphicon glyphicon-chevron-right"></span></label>');
 
         //changed. now with parameter
         function update(slider,val) {
@@ -284,7 +285,7 @@
             var $duration = slider == 2?val:$("#duration").val();
 
             if ($amount == undefined) {
-                $amount = 7500;
+                $amount = startAmount;
                 $duration = 1;
             }
 

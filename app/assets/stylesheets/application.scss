@@ -76,10 +76,11 @@ a {
   color: white;
   font-weight: 800;
   padding-left: 8px;
+  transition: color .3s ease-in-out;
 }
 
 a:hover {
-  color: #2d5c82;
+  color: #0086f3;
   text-decoration: none;
 }
 
@@ -88,7 +89,7 @@ a:hover {
 }
 
 a:hover {
-  color: transparent;
+  // color: transparent;
 }
 
 .text-primary {
@@ -812,6 +813,23 @@ label {
   cursor: pointer;
 }
 
+label[for^="calculadora"], label[for^="contact"] {
+  font-family: 'Din';
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+label[for^="calculadora_local"], label[for^="contact_local"] {
+  img {
+    height: 120px;
+    width: 120px;
+  }
+}
+
 .options input{
   margin:0;padding:0;
   -webkit-appearance:none;
@@ -1239,6 +1257,24 @@ a.active {
 .valor-slider {
   margin-bottom: 70px;
   margin-top: 30px;
+  div.row {
+    display: flex;
+    align-items: center;
+    div[class^="col-md"] {
+      padding: 0;
+    }
+    div.col-md-2 {
+      display: flex;
+      &:first-of-type {
+        justify-content: center;
+        position: relative;
+
+      }
+      &:last-of-type {
+        justify-content: flex-end;
+      }
+    }
+  }
 }
 
 .valor-slider span {
