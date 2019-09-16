@@ -40,10 +40,6 @@ class HomeController < ApplicationController
     end
   end
 
-  def orcamento
-    @contact = Contact.new(params[:home])
-  end
-
   def aempresa
   end
 

@@ -33,10 +33,15 @@
 
           <br>
 
-          <%= simple_form_for @contact do |f| %>
+          <%= simple_form_for @calculadora, url: url_for(action: 'orcamento', controller: 'calculadora'), method: 'post' do |f| %>
+            <%= f.hidden_field :media %>
+            <%= hidden_field_tag :previous_local_value, @calculadora.local %>
+            <%= hidden_field_tag :previous_media_value, @calculadora.media %>
+
+
             <div class="form-group">
               <div class="col-md-12">
-                <%= f.input :name, placeholder: 'NOME', required: true, label: false, input_html: { class: 'form-control'} %>
+                <%= f.input :nome, placeholder: 'NOME', required: true, label: false, input_html: { class: 'form-control'} %>
               </diV>
 
               <div class="col-md-12">
@@ -44,7 +49,7 @@
               </diV>
 
               <div class="col-md-12">
-                <%= f.input :telephone, placeholder: 'TELEFONE', required: true, label: false, input_html: { class: 'form-control', style: 'margin-bottom: 40px'} %>
+                <%= f.input :telefone, placeholder: 'TELEFONE', required: true, label: false, input_html: { class: 'form-control', style: 'margin-bottom: 40px'} %>
               </div>
             </div>
 
@@ -55,11 +60,11 @@
             </div>
 
             <div class="col-md-6">
-              <%= f.input :state, prompt: 'ESTADO', collection: State.all, required: true, label: false, input_html: { class: 'form-control', style: 'margin-bottom: 40px'} %>
+              <%= f.input :estado, prompt: 'ESTADO', collection: State.all, label: false, input_html: { class: 'form-control'}, sytle: 'padding-right: 1px' %>
             </div>
 
             <div class="col-md-6">
-              <%= f.input :city, prompt: 'CIDADE', collection: City.all, required: true, label: false, input_html: { class: 'form-control',  style: 'margin-bottom: 40px'} %>
+              <%= f.input :cidade, prompt: 'CIDADE', collection: City.all, label: false, input_html: { class: 'form-control'} %>
             </div>
 
             <div class="row">
@@ -102,9 +107,19 @@
 
 <script>
     $(document).ready(function(){
-        const startAmount = 7500;
+        var startAmount = 7500;
 
         initPreferences = function () {
+            $('#calculadora_telefone').phoneBrazil();
+
+            if ($('#previous_media_value').val() !== undefined){
+                startAmount = $('#previous_media_value').val();
+            }
+
+            if ($('#previous_local_value').val() != undefined){
+                $('#calculadora_local_' + $('#previous_local_value').val()).click();
+            }
+
             //Added, set initial value.
             $("#amount").val(startAmount);
             $("#duration").val(startAmount);
@@ -114,37 +129,37 @@
             update();
         }();
 
-        $("input[name='contact[local]']").click(function(){
+        $("input[name='calculadora[local]']").click(function(){
             switch($(this).val()) {
                 case 'residencial':
-                    $('#contact_local_residencial').next('img').attr("src", "/icons/residencial_amarelo.png");
-                    $('#contact_local_comercial').next('img').attr("src", "/icons/comercial_azul.png");
-                    $('#contact_local_outro').next('img').attr("src", "/icons/outro_azul.png");
+                    $('#calculadora_local_residencial').next('img').attr("src", "/icons/residencial_amarelo.png");
+                    $('#calculadora_local_comercial').next('img').attr("src", "/icons/comercial_azul.png");
+                    $('#calculadora_local_outro').next('img').attr("src", "/icons/outro_azul.png");
 
                     break;
+
                 case 'comercial':
-                    $('#contact_local_residencial').next('img').attr("src", "/icons/residencial_azul.png");
-                    $('#contact_local_comercial').next('img').attr("src", "/icons/comercial_amarelo.png");
-                    $('#contact_local_outro').next('img').attr("src", "/icons/outro_azul.png");
+                    $('#calculadora_local_residencial').next('img').attr("src", "/icons/residencial_azul.png");
+                    $('#calculadora_local_comercial').next('img').attr("src", "/icons/comercial_amarelo.png");
+                    $('#calculadora_local_outro').next('img').attr("src", "/icons/outro_azul.png");
 
                     break;
 
                 case 'outro':
-                    $('#contact_local_residencial').next('img').attr("src", "/icons/residencial_azul.png");
-                    $('#contact_local_comercial').next('img').attr("src", "/icons/comercial_azul.png");
-                    $('#contact_local_outro').next('img').attr("src", "/icons/outro_amarelo.png");
+                    $('#calculadora_local_residencial').next('img').attr("src", "/icons/residencial_azul.png");
+                    $('#calculadora_local_comercial').next('img').attr("src", "/icons/comercial_azul.png");
+                    $('#calculadora_local_outro').next('img').attr("src", "/icons/outro_amarelo.png");
 
                     break;
             }
         });
 
-
-        $("#contact_state").change(function() {
-            getCitiesByState("id="+$("#contact_state").val());
+        $("#calculadora_estado").change(function() {
+            getCitiesByState("id="+$("#calculadora_state").val());
         });
 
-        $("#contact_city").change(function() {
-            getStateByCity("id="+$("#contact_city").val());
+        $("#calculadora_cidade").change(function() {
+            getStateByCity("id="+$("#calculadora_cidade").val());
         });
 
         function getCitiesByState(id) {
@@ -153,13 +168,13 @@
                 $.each(j.cty, function (i, item) {
                     options += '<option value="' + item.id + '">' + item.n + '</option>';
                 });
-                $("#contact_city").html(options);
+                $("#calculadora_cidade").html(options);
             });
         }
 
         function getStateByCity(id) {
             $.getJSON("/state_by_city", id, function (j) {
-                $("#contact_state").val(j['state']['id']);
+                $("#calculadora_estado").val(j['state']['id']);
             });
         }
 
@@ -195,6 +210,8 @@
             $( "#total-label" ).text($total);
 
             $('#slider a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+$amount+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
+
+            $('#calculadora_media').val($amount);
         }
     });
 </script>

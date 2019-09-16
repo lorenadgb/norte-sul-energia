@@ -78,7 +78,13 @@
       </div>
 
       <div class="col-md-6">
-        <%= link_to 'SOLICITE ORÇAMENTO', root_path, class: 'btn btn-primary-outline btn-block pull-left' %>
+        <%= link_to 'SOLICITE ORÇAMENTO', orcamento_path(
+                                                        media:   params[:calculadora][:media],
+                                                        estado:  params[:calculadora][:estado],
+                                                        cidade:  params[:calculadora][:cidade],
+                                                        local:   params[:calculadora][:local],
+                                                        ajuste:  params[:calculadora][:ajuste],
+                                                        ), class: 'btn btn-primary-outline btn-block pull-left' %>
       </div>
 
       <br><br><br>

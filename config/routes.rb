@@ -2,11 +2,13 @@ Rails.application.routes.draw do
   root 'calculadora#new'
 
   get  'como-funciona', to: 'home#comofunciona'
-  get  'orcamento',     to: 'home#orcamento'
   get  'a-empresa',     to: 'home#aempresa'
 
-  resources :contacts,     only: [:new, :create]
+  resources :contacts,    only: [:new, :create]
   resources :calculadora, only: [:new, :create]
+
+  get  'orcamento', to: 'calculadora#orcamento'
+  post 'orcamento', to: 'calculadora#orcamento'
 
   get  'resultado',    to: 'calculadora#resultado'
   get  'download_pdf', to: 'calculadora#download_pdf'

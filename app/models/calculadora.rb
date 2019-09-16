@@ -26,11 +26,13 @@ class Calculadora
   end
 
   def kwp
-    return unless valid?
-
-    kw = media.to_f / ajuste.to_f
+    kw = media.to_f / ajuste_ou_default.to_f
 
     (kw / MEDIA_DIAS_POR_MES) / MEDIA_HORAS_BRASIL
+  end
+
+  def ajuste_ou_default
+    ajuste.nil? ? get_taxa_sem_ajuste : ajuste
   end
 
   def investimento_minimo
@@ -63,4 +65,21 @@ class Calculadora
     rede_eletrica == 'sim'
   end
 
+  def get_taxa_sem_ajuste
+    state = state_repository.find(estado)
+
+    case local
+    when 'residencial'
+      state.residencial
+    when 'comercial'
+      state.comercial
+    when 'outro'
+      state.outro
+    end
+
+  end
+
+  def state_repository
+    State
+  end
 end
