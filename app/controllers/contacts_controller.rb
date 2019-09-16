@@ -8,7 +8,7 @@ class ContactsController < ApplicationController
     @contact = Contact.new(params[:contact])
     @contact.request = request
 
-    if @contact.deliver
+    if @contact.deliver!
       redirect_to new_contact_path, notice: 'OBRIGADO. ENTRAREMOS EM CONTATO EM BREVE!'
     else
       flash.now[:error] = 'Cannot send message.'

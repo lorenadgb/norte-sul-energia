@@ -38,7 +38,7 @@
         <%= simple_form_for @contact do |f| %>
           <div class="form-group">
             <div class="col-md-12">
-              <%= f.input :name, placeholder: 'NOME', required: true, label: false, input_html: { class: 'form-control'} %>
+              <%= f.input :nome, placeholder: 'NOME', required: true, label: false, input_html: { class: 'form-control'} %>
             </diV>
 
             <div class="col-md-12">
@@ -46,19 +46,19 @@
             </diV>
 
             <div class="col-md-12">
-              <%= f.input :telephone, placeholder: 'TELEFONE', required: true, label: false, input_html: { class: 'form-control'} %>
+              <%= f.input :telefone, placeholder: 'TELEFONE', required: true, label: false, input_html: { class: 'form-control'} %>
             </div>
 
             <div class="col-md-6">
-              <%= f.input :state, prompt: 'ESTADO', collection: State.all, required: true, label: false, input_html: { class: 'form-control'} %>
+              <%= f.input :estado, prompt: 'ESTADO', collection: State.all, required: true, label: false, input_html: { class: 'form-control'} %>
             </div>
 
             <div class="col-md-6">
-              <%= f.input :city, prompt: 'CIDADE', collection: City.all, required: true, label: false, input_html: { class: 'form-control'} %>
+              <%= f.input :cidade, prompt: 'CIDADE', collection: City.all, required: true, label: false, input_html: { class: 'form-control'} %>
             </div>
 
             <div class="col-md-12">
-              <%= f.input :message, as: :text, placeholder: 'MENSAGEM', required: true, label: false, input_html: { class: 'form-control', :cols => 5, :rows => 10 } %>
+              <%= f.input :mensagem, as: :text, placeholder: 'MENSAGEM', required: true, label: false, input_html: { class: 'form-control', :cols => 5, :rows => 10 } %>
             </div>
 
             <center> <%= f.button :submit, 'ENVIAR', class: 'btn btn-primary', style: 'width: 250px' %> </center>
@@ -71,15 +71,15 @@
 </section>
 
 <script>
-    $("#contact_state").change(function() {
-        getCitiesByState("id="+$("#contact_state").val());
+    $("#contact_estado").change(function() {
+        getCitiesByState("id="+$("#contact_estado").val());
     });
 
-    $("#contact_city").change(function() {
-        getStateByCity("id="+$("#contact_city").val());
+    $("#contact_cidade").change(function() {
+        getStateByCity("id="+$("#contact_cidade").val());
     });
 
-    $('#contact_telephone').phoneBrazil();
+    $('#contact_telefone').phoneBrazil();
 
     function getCitiesByState(id) {
         $.getJSON("/cities_by_state", id, function (j) {
@@ -87,13 +87,13 @@
             $.each(j.cty, function (i, item) {
                 options += '<option value="' + item.id + '">' + item.n + '</option>';
             });
-            $("#contact_city").html(options);
+            $("#contact_cidade").html(options);
         });
     }
 
     function getStateByCity(id) {
         $.getJSON("/state_by_city", id, function (j) {
-            $("#contact_state").val(j['state']['id']);
+            $("#contact_estado").val(j['state']['id']);
         });
     }
 </script>
