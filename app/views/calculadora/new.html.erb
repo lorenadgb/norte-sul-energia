@@ -19,6 +19,7 @@
         <div class="col-md-12">
           <%= simple_form_for @calculadora, url: url_for(action: 'resultado', controller: 'calculadora', anchor: 'init'), method: 'post' do |f| %>
             <%= hidden_field_tag :local_value %>
+            <%= f.hidden_field :media %>
 
             <div id="init"></div>
 
@@ -302,6 +303,8 @@
             $( "#total-label" ).text($total);
 
             $('#slider a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+$amount+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
+
+            $('#calculadora_media').val($amount);
         }
 
     });
