@@ -1,10 +1,7 @@
 module ApplicationHelper
 
-  def current_class?(test_path, test_controller_name = nil)
-    return 'active' if test_controller_name == 'contacts' && test_path == '/contacts/new'
-    return 'active' if test_controller_name == 'calculadora' && test_path == 'calculadora'
-
-    action_name == test_path ? 'active' : ''
+  def current_class?(test_path)
+    return 'active' if  %r{#{test_path}} =~ request.original_fullpath
   end
 
   def carousel_item(number, pag)
