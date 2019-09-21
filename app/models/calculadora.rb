@@ -59,6 +59,10 @@ class Calculadora
     (investimento_minimo / economia_mensal) / NUMERO_MESES_ANO
   end
 
+  def cidade_nome
+    city_repository.find(cidade).name
+  end
+
   private
 
   def acesso_a_rede_eletrica?
@@ -77,6 +81,10 @@ class Calculadora
       state.outro
     end
 
+  end
+
+  def city_repository
+    City
   end
 
   def state_repository

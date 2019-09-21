@@ -44,8 +44,14 @@ class CalculadoraController < ApplicationController
       pdf_page02 = CombinePDF.load "#{Rails.root}/public/pdf/proposta_comercial_02.pdf"
       pdf_page03 = CombinePDF.load "#{Rails.root}/public/pdf/proposta_comercial_03.pdf"
 
-      pdf_page01.pages[0].textbox "#{date}", height: 20, width: 70, y: 125, x: 490
-      pdf_page02.pages[0].textbox "oioioioioiio", height: 20, width: 70, y: 596, x: 72
+      # page 01
+      pdf_page01.pages[0].textbox date,              height: 20, width: 70, y: 125, x: 490
+      pdf_page01.pages[0].textbox @calculadora.nome, height: 20, width: 70, y: 110, x: 490
+
+      # page 02
+      pdf_page02.pages[0].textbox @calculadora.cidade_nome,           height: 10, width: 70, y: 570, x: 460
+      pdf_page02.pages[0].textbox @calculadora.economia_25_anos.to_s, height: 10, width: 70, y: 450, x: 460
+
 
       pdf = CombinePDF.new
       pdf << pdf_page01
