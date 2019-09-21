@@ -25,4 +25,14 @@ module ApplicationHelper
     end
   end
 
+  def check_dictionary(icon_text)
+    icon_text.include?('checkbox') ? 'NÃO' : 'SIM'
+  end
+
+  def local_dictionary(icon_text)
+    return 'RESIDENCIAL' if icon_text.include? 'residencial'
+    return 'COMERCIAL'   if icon_text.include? 'comercial'
+    return 'OUTRO'       if icon_text.include? 'outro'
+  end
+
 end
