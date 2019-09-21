@@ -115,7 +115,7 @@
             }
 
             if ($('#previous_local_value').val() != undefined){
-                $('#calculadora_local_' + $('#previous_local_value').val()).click();
+                clickLocal($('#calculadora_local_' + $('#previous_local_value').val()).val());
             }
 
             //Added, set initial value.
@@ -128,7 +128,11 @@
         }();
 
         $("input[name='calculadora[local]']").click(function(){
-            switch($(this).val()) {
+            clickLocal($(this).val());
+        });
+
+        function clickLocal(type) {
+            switch(type) {
                 case 'residencial':
                     $('#calculadora_local_residencial').next('img').attr("src", "/icons/residencial_amarelo.png");
                     $('#calculadora_local_comercial').next('img').attr("src", "/icons/comercial_azul.png");
@@ -150,7 +154,7 @@
 
                     break;
             }
-        });
+        }
 
         $("#calculadora_estado").change(function() {
             getCitiesByState("id="+$("#calculadora_state").val());
