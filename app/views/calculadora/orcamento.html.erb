@@ -72,7 +72,7 @@
             </div>
 
             <%= f.collection_radio_buttons(:local, [['residencial', '/icons/residencial_azul'], ['comercial', '/icons/comercial_azul'], ['outro', '/icons/outro_azul']], :first, :last, item_wrapper_tag: "div class='col-md-3 col-md-offset-1'", class: 'threads-opts') do |b| %>
-              <%= b.label { b.radio_button(class: 'threads-opts') + image_tag(b.text+'.png') + 'RESIDENCIAL' } %>
+              <%= b.label { b.radio_button(class: 'threads-opts') + image_tag(b.text+'.png') + check_dictionary(b.text) } %>
             <% end %>
 
             <div class="row">
@@ -102,8 +102,6 @@
     </div>
   </div><!--/.container-->
 </section>
-
-<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
 
 <script>
     $(document).ready(function(){
