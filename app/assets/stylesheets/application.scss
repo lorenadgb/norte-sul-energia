@@ -528,7 +528,6 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
   CUSTON BTN VALUES
 ************************/
 .btn {
-  padding: 14px 24px;
   border: 0 none;
   font-weight: 700;
   letter-spacing: 1px;
@@ -848,12 +847,16 @@ label[for^="calculadora"], label[for^="contact"] {
   text-transform: uppercase;
   font-weight: bold;
 }
+//
+//label[for^="calculadora_local"], label[for^="contact_local"] {
+//  img {
+//    height: 120px;
+//    width: 120px;
+//  }
+//}
 
-label[for^="calculadora_local"], label[for^="contact_local"] {
-  img {
-    height: 120px;
-    width: 120px;
-  }
+.rede-eletrica img {
+  height: 50px;
 }
 
 .options input{
