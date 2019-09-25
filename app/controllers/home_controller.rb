@@ -43,4 +43,8 @@ class HomeController < ApplicationController
   def aempresa
   end
 
+  def search
+
+  end
+
 end
