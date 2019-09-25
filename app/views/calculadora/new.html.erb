@@ -61,7 +61,7 @@
                   </p>
 
                   <%= f.collection_radio_buttons(:local, [['residencial', '/icons/residencial_azul'], ['comercial', '/icons/comercial_azul'], ['outro', '/icons/outro_azul']], :first, :last, item_wrapper_tag: "div class='col-md-3 col-md-offset-1'", class: 'threads-opts') do |b| %>
-                    <%= b.label { b.radio_button(class: 'threads-opts') + image_tag(b.text+'.png') + local_dictionary(b.text) } %>
+                    <%= b.label { b.radio_button(class: 'threads-opts') + image_tag(b.text+'.png', style: 'width: 60%') + local_dictionary(b.text) } %>
                   <% end %>
 
                   <div class="row">
@@ -77,13 +77,13 @@
                   <div class="valor-slider">
                     <div class="row">
                       <div class="col-md-2">
-                        <%= image_tag 'menor.png' %>
+                        <%= image_tag 'menor.png', style: 'padding-left: 147px' %>
                       </div>
                       <div class="col-md-8">
                         <div id="slider"></div>
                       </div>
                       <div class="col-md-2">
-                        <%= image_tag 'maior.png' %>
+                        <%= image_tag 'maior.png', style: 'padding-right: 147px' %>
                       </div>
                     </div>
                   </div>
