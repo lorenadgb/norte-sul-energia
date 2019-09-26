@@ -72,7 +72,7 @@
             </div>
 
             <%= f.collection_radio_buttons(:local, [['residencial', '/icons/residencial_azul'], ['comercial', '/icons/comercial_azul'], ['outro', '/icons/outro_azul']], :first, :last, item_wrapper_tag: "div class='col-md-3 col-md-offset-1'", class: 'threads-opts') do |b| %>
-              <%= b.label { b.radio_button(class: 'threads-opts') + image_tag(b.text+'.png', style: 'width: 60%') + local_dictionary(b.text) } %>
+              <%= b.label { b.radio_button(class: 'threads-opts') + image_tag(b.text+'.png', style: 'width: 70%') + local_dictionary(b.text) } %>
             <% end %>
 
             <div class="row">
