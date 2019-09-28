@@ -60,10 +60,12 @@
                     3. Qual o tipo do local da instalação?
                   </p>
 
-                  <%= f.collection_radio_buttons(:local, [['residencial', '/icons/residencial_azul'], ['comercial', '/icons/comercial_azul'], ['outro', '/icons/outro_azul']], :first, :last, item_wrapper_tag: "div class='col-md-3 col-md-offset-1'", class: 'threads-opts') do |b| %>
-                    <%= b.label { b.radio_button(class: 'threads-opts') + image_tag(b.text+'.png', style: 'width: 70%') + local_dictionary(b.text) } %>
-                  <% end %>
-
+                  <div class="instalacao-wrapper">
+                    <%= f.collection_radio_buttons(:local, [['residencial', '/icons/residencial_azul'], ['comercial', '/icons/comercial_azul'], ['outro', '/icons/outro_azul']], :first, :last, item_wrapper_tag: "div class='col-md-3 col-md-offset-1'", class: 'threads-opts') do |b| %>
+                      <%= b.label { b.radio_button(class: 'threads-opts') + image_tag(b.text+'.png', style: 'width: 70%') + local_dictionary(b.text) } %>
+                    <% end %>
+                  </div>
+                  
                   <div class="row">
                     <div class="col-md-6 col-md-offset-3 ajuste">
                       <%= f.input :ajuste, label: false, placeholder: 'AJUSTE DA TARIFA EM R$' ,input_html: { class: 'form-control center-block', style: 'text-align:center !important;'} %>
@@ -76,19 +78,13 @@
 
                   <div class="valor-slider">
                     <div class="row">
-                      <div class="col-md-1">
+                      <div class="col-md-2">
                         <%= image_tag 'menor.png', style: 'height: 20px;', class: 'pull-right' %>
-                      </div>
-                      <div class="col-md-1">
-                        <%= image_tag '/icons/bolinha.png', style: 'padding-left: 78px' %>
                       </div>
                       <div class="col-md-8">
                         <div id="slider"></div>
                       </div>
-                      <div class="col-md-1">
-                        <%= image_tag '/icons/bolinha.png', style: 'padding-left: -10px' %>
-                      </div>
-                      <div class="col-md-1">
+                      <div class="col-md-2">
                         <%= image_tag 'maior.png', style: 'height: 40px' %>
                       </div>
                     </div>

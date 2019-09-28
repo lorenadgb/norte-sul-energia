@@ -24,6 +24,24 @@
   font-style: normal;
 }
 
+@mixin d($size) {
+	@if $size == l {
+		@media screen and (min-width: 1200px) {
+			@content;
+		}
+	}
+	@else if $size == m {
+		@media screen and (min-width: 768px) and (max-width: 1199px) {
+			@content;
+		}
+	}
+	@else if $size == s {
+		@media screen and (max-width: 767px) {
+			@content;
+		}
+	}
+}
+
 .navbar {
   position: relative;
   display: -ms-flexbox;
@@ -867,6 +885,17 @@ label[for^="calculadora"], label[for^="contact"] {
   height: 50px;
 }
 
+#rede-eletrica .instalacao-wrapper,
+form .instalacao-wrapper {
+  display: flex;
+  justify-content: space-around;
+  @include d(s) {
+    & img {
+      width: 40px !important;
+    }
+  }
+}
+
 .options input{
   margin:0;padding:0;
   -webkit-appearance:none;
@@ -1298,7 +1327,7 @@ a.active {
     display: flex;
     align-items: center;
     div[class^="col-md"] {
-      padding: 0;
+      padding: 0 !important;
     }
     div.col-md-2 {
       display: flex;
@@ -1311,6 +1340,59 @@ a.active {
         justify-content: flex-end;
       }
     }
+    div.col-md-8::after,
+    div.col-md-8::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #bdc3c7;
+      position: absolute;
+      right: -2px;
+      top: 2px;
+    }
+    div.col-md-8::before {
+      right: initial;
+      left: -2px;
+    }
+    @include d(s) {
+      position: absolute;
+      width: calc(100% + 60px);
+      left: -30px;
+      div.col-md-2 {
+        flex: 1 1 5%
+      }
+      div.col-md-8 {
+        flex: 1 1 25%;
+        a {
+          width: 100px;
+        }
+      }
+    }
+    @include d(m) {
+      position: absolute;
+      width: calc(100% + 60px);
+      left: -30px;
+      div.col-md-2 {
+        flex: 1 1 5%
+      }
+      div.col-md-8 {
+        flex: 1 1 25%;
+        a {
+          width: 100px;
+        }
+      }
+    }
+  }
+}
+
+center.submit-content {
+  @include d(s) {
+    padding-top: 15px;
+  }
+  @include d(m) {
+    padding-top: 15px;
   }
 }
 
