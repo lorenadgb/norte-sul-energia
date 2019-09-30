@@ -98,7 +98,7 @@ a {
 }
 
 a:hover {
-  color: #0086f3;
+  color: #345D91;
   text-decoration: none;
 }
 
@@ -753,6 +753,7 @@ h2-reduza {
   font: 700 2em/1.4 'Avenir', sans-serif;
   color: white;
   font-size: 40px;
+  height: 115px;
   span.reduza-wrapper {
     display: inline-flex;
     width: 100%;
@@ -782,7 +783,7 @@ h2-reduza::before {
   width: 40px;
   height: 40px;
   background: linear-gradient(to right bottom, gray 50%, rgba(0,0,0,0) 51%);
-  top: 77px;
+  top: 115px;
   right: 0px;
 }
 
@@ -906,7 +907,8 @@ form .instalacao-wrapper {
 
 .yellowText {
   color: #fed136;
-  font-size: 55px;
+  font-size: 65px;
+  font-weight: bold;
 }
 
 .btn-outline {
