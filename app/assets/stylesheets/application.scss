@@ -42,6 +42,55 @@
 	}
 }
 
+@mixin bootstrap-d($size) {
+	@if $size == l {
+		@media screen and (min-width: 1200px) {
+			@content;
+		}
+  }
+  @else if $size == ml {
+		@media screen and (min-width: 993px) and (max-width: 1199px) {
+			@content;
+		}
+	}
+	@else if $size == m {
+		@media screen and (min-width: 768px) and (max-width: 992px) {
+			@content;
+		}
+	}
+	@else if $size == s {
+		@media screen and (max-width: 767px) {
+			@content;
+		}
+	}
+}
+
+div.container.header-nav {
+  position: absolute;
+  top: 0;
+  z-index: 200;
+  @include bootstrap-d(l) {
+    left: calc(50% - 1170px / 2);
+  }
+  @include bootstrap-d(ml) {
+    left: calc(50% - 970px / 2);
+  }
+  @include bootstrap-d(m) {
+    left: calc(50% - 750px / 2);
+  }
+  @include bootstrap-d(s) {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}
+
+.bg1,
+.bg2,
+.bg3 {
+  padding-top: 20vh;
+}
+
 .navbar {
   position: relative;
   display: -ms-flexbox;
@@ -106,8 +155,14 @@ a:hover {
   color: transparent;
 }
 
-a:hover {
-  // color: transparent;
+a.website-links {
+  color: #fed136;
+  font-size: 35px;
+  text-decoration: underline;
+  display: block;
+  &:hover {
+    color: #0086f3;
+  }
 }
 
 .text-primary {
@@ -800,17 +855,17 @@ p {
 }
 
 .slider {
-  -webkit-appearance: none;
+  appearance: none;
   width: 100%;
   height: 3px;
   border-radius: 5px;
   background: #2d5c82;
   outline: none;
-  -webkit-transition: .2s;
+  transition: .2s;
 }
 
 .slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
+  appearance: none;
   height: 50px;
   cursor: pointer;
   border: 0;
@@ -1141,9 +1196,7 @@ a.active {
     margin-left: 10px;
   }
 }
-.range-slider {
 
-}
 .rs-range {
   margin-top: 29px;
   width: 100%;
@@ -1314,8 +1367,6 @@ a.active {
   position: absolute;
   left: 0;
   bottom: 5px;
-  width: 100%;
-  height: 3px;
   background: #7f8c8d;
   opacity: 0.5;
 }

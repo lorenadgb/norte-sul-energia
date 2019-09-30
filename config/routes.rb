@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get  'como-funciona', to: 'home#comofunciona'
   get  'a-empresa',     to: 'home#aempresa'
+  get  'search',        to: 'home#search'
 
   resources :contacts,    only: [:new, :create]
   resources :calculadora, only: [:new, :create]
