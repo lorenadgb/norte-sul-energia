@@ -528,6 +528,7 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
   padding: 20px 50px !important;
   background-color: #f5f5f56b;
   font-size: 18px;
+  margin-top: 55px;
 }
 
 .btn-primary-transparent:hover, .btn-primary-transparent:focus, .btn-primary-transparent:active, .btn-primary-transparent.active, .open > .dropdown-toggle.btn-primary {
@@ -602,9 +603,9 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 }
 
 .nav-left-text {
-  font-size: 60px;
+  font-size: 55px;
   margin-top: 0;
-  padding-top: 40px;
+  padding-top: 15px;
   text-align: left;
   color: #2d5c82;
 }
@@ -635,7 +636,7 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 
 @keyframes rdg-expertise-bar-animation-keyframe {
   0%   { height: 0; width: 0; }
-  100% {width: 16px;height: 135px; margin-right: 20px; margin-top: 26px}
+  100% {width: 16px;height: 109px; margin-right: 20px; margin-top: 26px}
 }
 
 @keyframes rdg-expertise-bar-animation-keyframe-contact {
