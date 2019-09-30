@@ -1501,3 +1501,31 @@ center.submit-content {
   margin-right: auto;
   width: 50%;
 }
+
+@media screen and (max-width: 992px) {
+  .nav-left-text {
+    font-size: 30px;
+    margin-top: 0;
+    padding-top: 40px;
+    text-align: left;
+    color: #2d5c82;
+  }
+
+  .rdg-expertise-description {
+    min-height: 40px;
+    display:flex;
+    flex-direction:column;
+    padding-bottom: 20px;
+    width: 10px;
+  }
+
+  @keyframes rdg-expertise-bar-animation-keyframe {
+    0%   { height: 0; width: 0; }
+    100% {width: 8px;height: 45px; margin-right: 20px; margin-top: 26px}
+  }
+
+  @keyframes rdg-expertise-bar-animation-keyframe-contact {
+    0%   { height: 0; width: 0; }
+    100% {width: 8px;height: 45px;}
+  }
+}
