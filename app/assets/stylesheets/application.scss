@@ -1494,3 +1494,10 @@ center.submit-content {
   line-height: 1.75;
   font-weight: normal;
 }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
