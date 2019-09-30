@@ -1,9 +1,23 @@
 <section class="nav">
   <div class="container">
     <div class="row ">
-      <div class="col-md-12">
+      <div class="col-md-10">
         <%= image_tag 'icon-whatsapp.png', class: 'pull-left', style: 'padding-right: 10px' %>
         <div class="topbar-text">Contato: +55 65 99914.7877</div>
+      </div>
+
+      <div class="col-md-2">
+        <%= link_to '#' do %>
+          <%= image_tag '/icons/facebook.png', class: 'pull-left', style: 'padding-right: 10px' %>
+        <% end %>
+
+        <%= link_to '#' do %>
+          <%= image_tag '/icons/instagram.png', class: 'pull-left', style: 'padding-right: 10px' %>
+        <% end %>
+
+        <%#= link_to '#' do %>
+          <%#= image_tag '/icons/instagram.png', class: 'pull-left', style: 'padding-right: 10px' %>
+        <%# end %>
       </div>
     </div>
   </div>
