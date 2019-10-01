@@ -147,7 +147,7 @@ a {
 }
 
 a:hover {
-  color: #0086f3;
+  color: #345D91;
   text-decoration: none;
 }
 
@@ -583,6 +583,7 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
   padding: 20px 50px !important;
   background-color: #f5f5f56b;
   font-size: 18px;
+  margin-top: 55px;
 }
 
 .btn-primary-transparent:hover, .btn-primary-transparent:focus, .btn-primary-transparent:active, .btn-primary-transparent.active, .open > .dropdown-toggle.btn-primary {
@@ -618,7 +619,7 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 
 .box {
   padding: 50px 30px;
-  background-image: linear-gradient(to bottom right, rgba(255,255,255,1), rgba(255,255,255,0.6));
+  background-image: linear-gradient(to bottom right, rgba(255,255,255,1), rgba(255,255,255,1));
   border-bottom: 1px solid #e9e9e9;
   position: relative;
 }
@@ -657,9 +658,9 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 }
 
 .nav-left-text {
-  font-size: 60px;
+  font-size: 55px;
   margin-top: 0;
-  padding-top: 40px;
+  padding-top: 15px;
   text-align: left;
   color: #2d5c82;
 }
@@ -690,7 +691,7 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 
 @keyframes rdg-expertise-bar-animation-keyframe {
   0%   { height: 0; width: 0; }
-  100% {width: 16px;height: 135px; margin-right: 20px; margin-top: 26px}
+  100% {width: 16px;height: 109px; margin-right: 20px; margin-top: 26px}
 }
 
 @keyframes rdg-expertise-bar-animation-keyframe-contact {
@@ -807,6 +808,7 @@ h2-reduza {
   font: 700 2em/1.4 'Avenir', sans-serif;
   color: white;
   font-size: 40px;
+  height: 115px;
   span.reduza-wrapper {
     display: inline-flex;
     width: 100%;
@@ -836,7 +838,7 @@ h2-reduza::before {
   width: 40px;
   height: 40px;
   background: linear-gradient(to right bottom, gray 50%, rgba(0,0,0,0) 51%);
-  top: 77px;
+  top: 115px;
   right: 0px;
 }
 
@@ -960,7 +962,8 @@ form .instalacao-wrapper {
 
 .yellowText {
   color: #fed136;
-  font-size: 55px;
+  font-size: 65px;
+  font-weight: bold;
 }
 
 .btn-outline {
@@ -1177,7 +1180,7 @@ html {
 }
 
 .menu-shared a {
-  font-size: 16px;
+  font-size: 14px;
   padding-left: 16px;
 }
 
@@ -1544,4 +1547,39 @@ center.submit-content {
   color: black;
   line-height: 1.75;
   font-weight: normal;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+@media screen and (max-width: 992px) {
+  .nav-left-text {
+    font-size: 30px;
+    margin-top: 0;
+    padding-top: 40px;
+    text-align: left;
+    color: #2d5c82;
+  }
+
+  .rdg-expertise-description {
+    min-height: 40px;
+    display:flex;
+    flex-direction:column;
+    padding-bottom: 20px;
+    width: 10px;
+  }
+
+  @keyframes rdg-expertise-bar-animation-keyframe {
+    0%   { height: 0; width: 0; }
+    100% {width: 8px;height: 45px; margin-right: 20px; margin-top: 26px}
+  }
+
+  @keyframes rdg-expertise-bar-animation-keyframe-contact {
+    0%   { height: 0; width: 0; }
+    100% {width: 8px;height: 45px;}
+  }
 }
