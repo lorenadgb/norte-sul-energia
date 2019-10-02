@@ -659,7 +659,8 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 .rdg-implementation-bg {background-color: #ed193a;}
 
 .row {
-  margin: auto;
+  margin-left: 35px;
+  margin-right: 35px;
 }
 
 .section-logo {
@@ -792,8 +793,9 @@ h2-reduza::before {
   left: 0px;
 }
 
-.row.quem-somos {
+.sub-header {
   margin-top: 110px;
+  margin-bottom: -8px;
 }
 
 p {
