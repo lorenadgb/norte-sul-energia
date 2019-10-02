@@ -1,7 +1,7 @@
 <header class="masthead">
 
   <div class="container">
-    <%= render 'layouts/shared/links' %>
+    <%= render partial:'layouts/shared/links', locals: { carouselClass: '' } %>
 
     <br><br><br><br>
   </div>
@@ -14,11 +14,11 @@
 
       <div class="row">
         <div class="col-md-12">
-          <div class="nav-left-text">
+          <div class="nav-left-text correct-paragraph">
             <div class="rdg-expertise-description rdg-strategy-bg rdg-animated-delay-0-contact text-right" style="float: left;"></div>
 
-            <p style="font-size: 22px; color: black">O MELHOR INVESTIMENTO</p>
-            <p style="font-size: 48px; margin-top: 10px; color: #2d5c82">SOLICITE UM ORÇAMENTO</p>
+            <p>O MELHOR INVESTIMENTO</p>
+            <p>SOLICITE UM ORÇAMENTO</p>
           </div>
         </div>
       </div>
@@ -26,7 +26,7 @@
       <div class="row">
         <div class="col-md-12">
 
-          <p style="font-size: 16px">
+          <p class="paragraph-inside">
             Para receber um orçamento sem compromisso da NORTE SUL basta preencher os campos do formulário
             abaixo. A nossa equipe entrará em contato o mais breve possível.
           </p>
