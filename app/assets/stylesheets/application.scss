@@ -641,7 +641,7 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 
 @keyframes rdg-expertise-bar-animation-keyframe-contact {
   0%   { height: 0; width: 0; }
-  100% {width: 16px;height: 115px;}
+  100% {width: 16px;height: 115px; margin-right: 20px;}
 }
 
 .rdg-animated-delay-0 {animation: 1.5s forwards 0s rdg-expertise-bar-animation-keyframe; width: 0px;}
