@@ -31,7 +31,7 @@ class CalculadoraController < ApplicationController
       @calculadora.estado = params[:estado]        if params[:estado]
     else
       @contact = Contact.new(calculadora_params)
-      @contact.deliver!
+      ContactMailer.contact_message(@contact).deliver!
 
       @calculadora = Calculadora.new(calculadora_params)
 
