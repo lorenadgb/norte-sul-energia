@@ -81,19 +81,19 @@
                 <p style="font-size: 26px; text-align: center; margin-top: 40px">CONSUMO MÉDIO MENSAL (KWH)</p>
               </div>
 
-              <div class="valor-slider">
-                <div class="row">
-                  <div class="col-md-2">
-                    <%= image_tag 'menor.png' %>
-                  </div>
-                  <div class="col-md-8">
-                    <div id="slider"></div>
-                  </div>
-                  <div class="col-md-2">
-                    <%= image_tag 'maior.png' %>
-                  </div>
+            <div class="valor-slider">
+              <div class="slider-wrapper">
+                <div class="slider-items dollar-sign">
+                  <%= image_tag 'menor.png', style: 'height: 20px;', class: 'pull-right' %>
+                </div>
+                <div class="slider-items inside-slider">
+                  <div id="slider"></div>
+                </div>
+                <div class="slider-items dollar-sign">
+                  <%= image_tag 'maior.png', style: 'height: 40px' %>
                 </div>
               </div>
+            </div>
 
               <center class="submit-content"> <%= f.button :submit, 'ENVIAR', :class=> "btn btn-primary", style: 'width: 250px' %> </center>
 
