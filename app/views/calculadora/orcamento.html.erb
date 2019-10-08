@@ -115,7 +115,7 @@
             $('#calculadora_telefone').phoneBrazil();
 
             if ($('#previous_media_value').val() !== ''){
-                startAmount = $('#previous_media_value').val();
+                startAmount = parseInt($('#previous_media_value').val());
             }
 
             if ($('#previous_local_value').val() != undefined){
@@ -127,6 +127,7 @@
             $("#duration").val(startAmount);
             $("#amount-label").text(startAmount);
             $("#duration-label").text(startAmount);
+            $('#calculadora_media').val(startAmount);
 
             update();
         }();
@@ -217,7 +218,9 @@
 
             $('#slider a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+$amount+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
 
-            $('#calculadora_media').val($amount);
+            if ($amount != undefined) {
+              $('#calculadora_media').val($amount);
+            }
         }
     });
 </script>

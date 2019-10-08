@@ -67,9 +67,9 @@
               <p>Tamanho da Potência:</p>
               <p><%= number_with_delimiter(@calculadora.kwp.round(2)) %> kWp</p>
               <p>Número de Módulos:</p>
-              <p>10 módulos</p>
+              <p><%= @calculadora.qtd_paineis %> módulos</p>
               <p>Produção Estimada:</p>
-              <p>10.000 kw/h</p>
+              <p><%= @calculadora.geracao_media %> kw/h</p>
             </div>
           </figure>
         </div>

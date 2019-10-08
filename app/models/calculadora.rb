@@ -20,6 +20,7 @@ class Calculadora
   MEDIA_MAXIMA         = 5500
   NUMERO_MESES_ANO     = 12
   NUMERO_MESES_25_ANOS = NUMERO_MESES_ANO * 25
+  POTENCIA_MEDIA_PLACA = 330
 
   def self.human_attribute_name(attr, options = {}) # 'options' wasn't available in Rails 3, and prior versions.
     HUMANIZED_ATTRIBUTES[attr.to_sym] || super
@@ -61,6 +62,14 @@ class Calculadora
 
   def cidade_nome
     city_repository.find(cidade).name
+  end
+
+  def qtd_paineis
+    (kwp / POTENCIA_MEDIA_PLACA * 100).to_i
+  end
+
+  def geracao_media
+    (economia_mensal / ajuste_ou_default.to_f).to_i
   end
 
   private
