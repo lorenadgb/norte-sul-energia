@@ -287,6 +287,28 @@ header.como-funciona {
   height: 450px;
 }
 
+header.orcamento {
+  text-align: center;
+  color: white;
+  background-image: url("header-orcamento.jpg");
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  background-size: cover;
+  height: 450px;
+}
+
+header.a-empresa {
+  text-align: center;
+  color: white;
+  background-image: url("header-aempresa.png");
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  background-size: cover;
+  height: 450px;
+}
+
 header.contato {
   text-align: center;
   color: white;
