@@ -135,8 +135,8 @@ body {
 }
 
 p {
-  line-height: 1.75;
   color: black;
+  font-weight: 700;
 }
 
 a {
@@ -536,7 +536,6 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
   margin-bottom: 0;
   font-size: 14px;
   font-weight: normal;
-  line-height: 1.42857143;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
@@ -901,24 +900,19 @@ div.correct-paragraph {
     padding-left: 25px;
   }
   p:first-of-type {
-    font-size: 22px;
+    font-size: 23px;
     color: black
   }
   p:last-of-type {
     font-size: 48px;
-    margin-top: 10px;
-    color: #2d5c82
+    margin-top: 30px;
+    color: #2d5c82;
   }
 }
 
 .sub-header {
   margin-top: 90px;
   margin-bottom: -8px;
-}
-
-p {
-  line-height: 1.75;
-  font-weight: 700;
 }
 
 .slider {
@@ -1101,7 +1095,6 @@ figcaption {
   padding: 25px 12px 15px 12px;
   margin-bottom: 15px;
   font-size: 20px;
-  line-height: 1.428571429;
   color: #2d5c82;
   background-color: #fff;
   background-image: none;
@@ -1603,7 +1596,6 @@ center.submit-content {
 
 .topbar-text {
   color: black;
-  line-height: 1.75;
   font-weight: normal;
   margin-top: 5px;
 }

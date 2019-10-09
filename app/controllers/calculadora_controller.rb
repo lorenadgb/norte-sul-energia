@@ -31,7 +31,7 @@ class CalculadoraController < ApplicationController
       @calculadora.estado = params[:estado]        if params[:estado]
     else
       @contact = Contact.new(calculadora_params)
-      ContactMailer.contact_message(@contact).deliver!
+      ContactMailer.contact_message(@contact).deliver! if Rails.env.production?
 
       @calculadora = Calculadora.new(calculadora_params)
 
@@ -44,12 +44,19 @@ class CalculadoraController < ApplicationController
       pdf_page03 = CombinePDF.load "#{Rails.root}/public/pdf/proposta_comercial_03.pdf"
 
       # page 01
-      pdf_page01.pages[0].textbox date,              height: 20, width: 70, y: 125, x: 490
-      pdf_page01.pages[0].textbox @calculadora.nome, height: 20, width: 70, y: 110, x: 490
+      pdf_page01.pages[0].textbox date,              height: 20, width: 70, y: 125, x: 490, font_size: 15
+      pdf_page01.pages[0].textbox @calculadora.nome, height: 10, width: 70, y: 110, x: 460, font_size: 15
 
       # page 02
-      pdf_page02.pages[0].textbox @calculadora.cidade_nome,           height: 10, width: 70, y: 570, x: 460
-      pdf_page02.pages[0].textbox @calculadora.economia_25_anos.to_s, height: 10, width: 70, y: 450, x: 460
+      pdf_page02.pages[0].textbox @calculadora.qtd_paineis.to_s + '',                                                  height: 10, width: 70, y: 570, x: 460, font_size: 12
+      pdf_page02.pages[0].textbox @calculadora.kwp.to_d.truncate(1).to_s + ' kWp',                                     height: 10, width: 70, y: 570, x: 340, font_size: 12
+      pdf_page02.pages[0].textbox 'R$ ' + ActiveSupport::NumberHelper.number_to_delimited(@calculadora.media).to_s,    height: 10, width: 70, y: 570, x: 220, font_size: 12
+      pdf_page02.pages[0].textbox @calculadora.geracao_media.to_s + " kWh/mês",                                        height: 10, width: 70, y: 570, x: 120, font_size: 12
+
+      pdf_page02.pages[0].textbox 'R$ ' + ActiveSupport::NumberHelper.number_to_delimited(@calculadora.economia_25_anos).to_s,    height: 10, width: 70, y: 450, x: 460, font_size: 12
+      pdf_page02.pages[0].textbox 'R$ ' + ActiveSupport::NumberHelper.number_to_delimited(@calculadora.economia_anual).to_s,      height: 10, width: 70, y: 450, x: 360, font_size: 12
+      pdf_page02.pages[0].textbox @calculadora.retorno.to_d.truncate(1).to_s + ' ANOS',                                           height: 10, width: 70, y: 450, x: 230, font_size: 12
+      pdf_page02.pages[0].textbox 'R$ ' + ActiveSupport::NumberHelper.number_to_delimited(@calculadora.investimento_minimo.round(2)).to_s, height: 10, width: 70, y: 450, x: 110, font_size: 12
 
 
       pdf = CombinePDF.new
@@ -59,7 +66,7 @@ class CalculadoraController < ApplicationController
 
       # pdf.save "#{Rails.root}/public/pdf/output#{pdf_name}.pdf"
 
-      send_data pdf.to_pdf, filename: 'orcamento.pdf', type: 'application/pdf'
+      send_data pdf.to_pdf, filename: 'orcamento.pdf', type: 'application/pdf; charset=utf-8', encoding: "UTF-8"
     end
   end
 
