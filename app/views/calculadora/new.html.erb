@@ -67,10 +67,10 @@
                       <%= b.label { b.radio_button(class: 'threads-opts') + image_tag(b.text+'.png', style: 'width: 70%') + local_dictionary(b.text) } %>
                     <% end %>
                   </div>
-                  
+
                   <div class="row">
                     <div class="col-md-6 col-md-offset-3 ajuste">
-                      <%= f.input :ajuste, label: false, placeholder: 'AJUSTE DA TARIFA EM R$' ,input_html: { class: 'form-control center-block', style: 'text-align:center !important;'} %>
+                      <%= f.input :ajuste, label: false, placeholder: 'AJUSTE DA TARIFA EM R$', input_html: { class: 'form-control center-block', style: 'text-align: center;'} %>
                     </div>
                   </div>
 
@@ -92,7 +92,7 @@
                     </div>
                   </div>
 
-                  <center> <%= f.button :submit, 'VER RESULTADO', class: 'btn btn-primary-outline', style: 'width: 350px' %> </center>
+                  <center> <%= f.button :submit, 'VER RESULTADO', class: 'btn btn-primary-outline', style: 'width: 350px; padding-top: 15px;' %> </center>
                 </div>
 
               <div id="sem-rede-eletrica">
@@ -144,10 +144,10 @@
             $('#calculadora_rede_eletrica_nao').next('img').attr("src", "/icons/checkbox.png");
 
             $("#calculadora_ajuste").inputmask('decimal', {
-                'alias': 'numeric',
-                // 'groupSeparator': ',',
-                // 'digits': 2,
-                // 'prefix': 'R$ ',
+              'alias': 'numeric',
+              // 'groupSeparator': ',',
+              // 'digits': 2,
+              // 'prefix': 'R$ ',
             });
 
             if($("input[name='calculadora[rede_eletrica]']:checked").val() == 'sim') {
