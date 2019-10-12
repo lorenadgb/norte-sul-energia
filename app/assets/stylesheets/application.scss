@@ -1,12 +1,12 @@
 @import "bootstrap";
 
-//@font-face {
-//  font-family: 'Din';
-//  src:font-url('DIN-Regular.ttf') format('truetype');
-//  font-weight: normal;
-//  font-style: normal;
-//}
-//
+@font-face {
+  font-family: 'Din';
+  src:url('DIN-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @mixin d($size) {
 	@if $size == l {
 		@media screen and (min-width: 1200px) {
