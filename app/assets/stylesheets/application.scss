@@ -704,11 +704,26 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
   width: 10px;
 }
 
+div.correct-paragraph-carousel {
+  p:first-of-type {
+    font-size: 53px;
+  }
+  p:last-of-type {
+    font-size: 53px;
+    margin:-25px;
+  }
+}
+
 .rdg-expertise-bar { margin: auto; height: 0; width: 0; overflow: hidden; }
 
 @keyframes rdg-expertise-bar-animation-keyframe {
   0%   { height: 0; width: 0; }
-  100% {width: 16px;height: 110px; margin-right: 20px; margin-top: 8px}
+  100% {width: 16px;height: 105px; margin-right: 20px; margin-top: 8px}
+}
+
+@keyframes rdg-expertise-bar-animation-keyframe-carousel {
+  0%   { height: 0; width: 0; }
+  100% {width: 16px;height: 105px; margin-right: 20px; margin-top: 8px}
 }
 
 @keyframes rdg-expertise-bar-animation-keyframe-large {
@@ -722,6 +737,7 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 }
 
 .rdg-animated-delay-0 {animation: 1.5s forwards 0s rdg-expertise-bar-animation-keyframe; width: 0px;}
+.rdg-animated-delay-0-carousel {animation: 1.5s forwards 0s rdg-expertise-bar-animation-keyframe-carousel; width: 0px;}
 .rdg-animated-delay-0-large {animation: 1.5s forwards 0s rdg-expertise-bar-animation-keyframe-large; width: 0px;}
 .rdg-animated-delay-0-contact {animation: 1.5s forwards 0s rdg-expertise-bar-animation-keyframe-contact; width: 0px;}
 
@@ -891,18 +907,17 @@ div.icons-cf-wrapper img,
   display: block;
 }
 
-div.correct-paragraph {
-  p {
-    padding-left: 25px;
-  }
+div.correct-paragraph-como-funciona {
+  //p {
+  //  padding-left: 25px;
+  //}
   p:first-of-type {
-    font-size: 23px;
-    color: black
+    //font-size: 23px;
+    //color: black
   }
   p:last-of-type {
-    font-size: 48px;
-    margin-top: 12px;
-    color: #2d5c82;
+    //font-size: 48px;
+    margin-top: -30px;
   }
 }
 
@@ -1135,7 +1150,7 @@ input[type="email"]::-ms-input-placeholder { /* Microsoft Edge */
 }
 
 #extra-space-orcamento {
-  height: 85px;
+  height: 90px;
 }
 
 .threads-opts{
@@ -1224,6 +1239,8 @@ input[type="email"]::-ms-input-placeholder { /* Microsoft Edge */
   text-align: center;
   list-style: none;
 }
+
+
 
 .center-block {
   margin: auto;
@@ -1623,6 +1640,18 @@ ul, ol {
   margin-bottom: 0px;
 }
 
+div.correct-paragraph {
+  p:first-of-type {
+    font-size: 23px;
+    color: black;
+  }
+  p:last-of-type {
+    font-size: 48px;
+    margin-top: 12px;
+    color: #2d5c82;
+  }
+}
+
 @media screen and (max-width: 992px) {
   .nav-left-text {
     font-size: 30px !important;
@@ -1649,6 +1678,19 @@ ul, ol {
     color: #2d5c82;
   }
 
+  #extra-space-orcamento {
+    height: 1px !important;
+    padding-bottom: 40px !important;
+  }
+
+  div.correct-paragraph-como-funciona {
+    p:first-of-type {
+      maring-top: 7px;
+    }
+    p:last-of-type {
+      margin-top: -20px !important;
+    }
+  }
 
   @keyframes rdg-expertise-bar-animation-keyframe {
     0% {
@@ -1673,9 +1715,26 @@ ul, ol {
       height: 45px;
     }
   }
+
+  @keyframes rdg-expertise-bar-animation-keyframe-carousel {
+    0% {
+      height: 0;
+      width: 0;
+    }
+    100% {
+      width: 8px;
+      height: 45px;
+      margin-right: 20px;
+      margin-top: 26px;
+    }
+  }
 }
 
 @media screen and (max-width: 1024px) {
+  .btn-block {
+    width: 48% !important;
+  }
+
   div.icons-cf-wrapper img,
   .advantages-image {
     width: 99%;
@@ -1709,7 +1768,8 @@ ul, ol {
   }
 
   #extra-space-orcamento {
-    height: 0px !important;;
+    height: 1px !important;
+    padding-bottom: 80px;
   }
 
   .nav-left-text {
@@ -1740,6 +1800,17 @@ ul, ol {
     width: 5px !important;
   }
 
+  div.correct-paragraph-carousel {
+    p:first-of-type {
+      margin-top: 15px !important;
+      font-size: 35px !important;
+    }
+    p:last-of-type {
+      font-size: 35px !important;
+      margin:-20px;
+    }
+  }
+
   @keyframes rdg-expertise-bar-animation-keyframe {
     0%   { height: 0; width: 0; }
     100% {width: 8px;height: 45px; margin-right: 20px; margin-top: 20px}
@@ -1753,6 +1824,11 @@ ul, ol {
   @keyframes rdg-expertise-bar-animation-keyframe-contact {
     0%   { height: 0; width: 0; }
     100% {width: 8px;height: 45px;}
+  }
+
+  @keyframes rdg-expertise-bar-animation-keyframe-carousel {
+    0%   { height: 0; width: 0; }
+    100% {width: 8px;height: 45px; margin-right: 20px; margin-top: 40px !important;}
   }
 }
 
