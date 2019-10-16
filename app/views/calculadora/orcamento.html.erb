@@ -87,7 +87,7 @@
             <div class="valor-slider">
               <div class="slider-wrapper">
                 <div class="slider-items dollar-sign">
-                  <%= image_tag 'menor.png', style: 'height: 20px;', class: 'pull-right' %>
+                  <%= image_tag 'menor.png', style: 'height: 20px;margin-left: 20px', class: 'pull-right' %>
                 </div>
                 <div class="slider-items inside-slider">
                   <div id="slider"></div>
@@ -98,7 +98,7 @@
               </div>
             </div>
 
-              <center class="submit-content"> <%= f.button :submit, 'ENVIAR', :class=> "btn btn-primary", style: 'width: 250px' %> </center>
+            <center class="submit-content"> <%= f.button :submit, 'ENVIAR', :class=> "btn btn-primary", style: 'width: 250px' %> </center>
 
           <% end %>
 
@@ -196,7 +196,7 @@
                 update(1,ui.value);
             }
         });
-        $('#slider a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+ startAmount +' <span class="glyphicon glyphicon-chevron-right"></span></label>');
+        $('#slider a').html('<label> '+ startAmount +' </label>');
 
 
         //changed. now with parameter
@@ -217,7 +217,7 @@
             $( "#total" ).val($total);
             $( "#total-label" ).text($total);
 
-            $('#slider a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+$amount+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
+            $('#slider a').html('<label>'+$amount+'</label>');
 
             if ($amount != undefined) {
               $('#calculadora_media').val($amount);

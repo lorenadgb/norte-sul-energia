@@ -1384,9 +1384,9 @@ a.active {
   cursor: default;
   margin: 0 -40px auto !important;
   text-align: center;
-  line-height: 30px;
+  line-height: 40px;
   color: #FFFFFF;
-  font-size: 15px;
+  font-size: 18px;
 }
 
 .ui-slider .ui-slider-handle .glyphicon {
@@ -1406,8 +1406,13 @@ a.active {
 
 .ui-state-default,
 .ui-widget-content .ui-state-default {
-  border: 1px solid #2d5c82;
-  background: #2d5c82;
+  //border: 0px solid #2d5c82;
+  //background: #2d5c82;
+  background-image: url("slider.png");
+  background-repeat: no-repeat;
+  background-size: 130px 40px;
+  width: 130px !important;
+  height: 40px;
 }
 
 .ui-slider-horizontal .ui-slider-handle {
