@@ -66,7 +66,7 @@ class CalculadoraController < ApplicationController
 
       # pdf.save "#{Rails.root}/public/pdf/output#{pdf_name}.pdf"
 
-      send_data pdf.to_pdf, filename: 'orcamento.pdf', type: 'application/pdf; charset=utf-8', encoding: "UTF-8"
+      send_data pdf.to_pdf, filename: 'orcamento.pdf', type: 'application/pdf; charset=utf-8', encoding: "utf8"
     end
   end
 
