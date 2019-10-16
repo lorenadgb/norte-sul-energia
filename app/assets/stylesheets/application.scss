@@ -1471,7 +1471,7 @@ a.active {
       }
     }
     div.inside-slider {
-      width: 66.66%;
+      width: 80%;
       position: relative;
       div#slider {
         width: 100%;
@@ -1495,7 +1495,7 @@ a.active {
     }
     @include d(s) {
       div.inside-slider {
-        width: 50%;
+        width: 80%;
         a {
           width: 100px;
         }
@@ -1503,7 +1503,7 @@ a.active {
     }
     @include d(m) {
       div.inside-slider {
-        width: 50%;
+        width: 80%;
         a {
           width: 100px;
         }
