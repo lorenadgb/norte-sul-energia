@@ -3,7 +3,13 @@ class CalculadoraController < ApplicationController
 
   def new
     @calculadora = Calculadora.new
-    @calculadora.rede_eletrica = 'sim'
+
+    if params[:mail] == 'sent'
+      flash
+      @calculadora.rede_eletrica = 'sim'
+    else
+      @calculadora.rede_eletrica = 'sim'
+    end
   end
 
   def resultado
@@ -12,8 +18,8 @@ class CalculadoraController < ApplicationController
     if @calculadora.valid?
       if calculadora_params[:rede_eletrica] == 'nao'
         @contact = Contact.new(calculadora_params)
-        ContactMailer.contact_message(@contact, 'Off-grid').deliver!
-        redirect_back(fallback_location: root_path)
+        ContactMailer.contact_message(@contact, 'Off-grid').deliver! if Rails.env.production?
+        redirect_to new_calculadora_path(mail: 'sent'), notice: 'OBRIGADO. ENTRAREMOS EM CONTATO EM BREVE!'
       end
     else
       render action: 'new'

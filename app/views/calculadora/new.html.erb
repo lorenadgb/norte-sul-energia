@@ -19,11 +19,10 @@
 
       <div class="row">
         <div class="col-md-12">
-          <%= simple_form_for @calculadora, url: url_for(action: 'resultado', controller: 'calculadora', anchor: 'init'), method: 'post' do |f| %>
+          <%= simple_form_for @calculadora, url: url_for(action: 'resultado', controller: 'calculadora', anchor: 'calculadora'), method: 'post' do |f| %>
             <%= hidden_field_tag :local_value %>
             <%= f.hidden_field :media %>
 
-            <div id="init"></div>
 
               <% if @calculadora.errors.any? %>
               <div class="alert alert-danger" role="alert">
@@ -32,6 +31,8 @@
                   <% end %>
                 </div>
               <% end %>
+
+              <%= render 'layouts/shared/flash_messages' %>
 
               <div class="form-group">
                 <p>
@@ -233,6 +234,7 @@
         }
 
         $("input[name='calculadora[rede_eletrica]']").click(function(){
+            console.log(555);
             switch($(this).val()) {
                 case 'sim':
                     $('#calculadora_rede_eletrica_sim').next('img').attr("src", "/icons/check.png");
