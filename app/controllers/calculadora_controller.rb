@@ -51,7 +51,7 @@ class CalculadoraController < ApplicationController
       pdf_page02.pages[0].textbox @calculadora.qtd_paineis.to_s + '',                                                  height: 10, width: 70, y: 570, x: 460, font_size: 12
       pdf_page02.pages[0].textbox @calculadora.kwp.to_d.truncate(1).to_s + ' kWp',                                     height: 10, width: 70, y: 570, x: 340, font_size: 12
       pdf_page02.pages[0].textbox 'R$ ' + ActiveSupport::NumberHelper.number_to_delimited(@calculadora.media).to_s,    height: 10, width: 70, y: 570, x: 220, font_size: 12
-      pdf_page02.pages[0].textbox @calculadora.geracao_media.to_s + " kWh/mês",                                        height: 10, width: 70, y: 570, x: 120, font_size: 12
+      pdf_page02.pages[0].textbox @calculadora.geracao_media.to_s + " kWh",                                        height: 10, width: 70, y: 570, x: 120, font_size: 12
 
       pdf_page02.pages[0].textbox 'R$ ' + ActiveSupport::NumberHelper.number_to_delimited(@calculadora.economia_25_anos).to_s,    height: 10, width: 70, y: 450, x: 460, font_size: 12
       pdf_page02.pages[0].textbox 'R$ ' + ActiveSupport::NumberHelper.number_to_delimited(@calculadora.economia_anual).to_s,      height: 10, width: 70, y: 450, x: 360, font_size: 12
