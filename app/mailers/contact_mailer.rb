@@ -3,6 +3,6 @@ class ContactMailer < ActionMailer::Base
 
   def contact_message(contact)
     @contact = contact
-    mail(to: 'donotreply@nortesulenergia.com', subject: 'Contato')
+    mail(to: ENV['EMAIL'], subject: 'Contato')
   end
 end
