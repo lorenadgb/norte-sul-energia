@@ -27,9 +27,11 @@
   Cidade: <%= @contact.cidade_nome %>
 </p>
 
-<p>
-  Mensagem: <%= @contact.mensagem %>
-</p>
+<% if @contact.mensagem.present? %>
+  <p>
+    Mensagem: <%= @contact.mensagem %>
+  </p>
+<% end %>
 
 </body>
 </html>
