@@ -12,7 +12,7 @@ class CalculadoraController < ApplicationController
     if @calculadora.valid?
       if calculadora_params[:rede_eletrica] == 'nao'
         @contact = Contact.new(calculadora_params)
-        ContactMailer.contact_message(@contact).deliver!
+        ContactMailer.contact_message(@contact, 'Off-grid').deliver!
         redirect_back(fallback_location: root_path)
       end
     else
@@ -31,7 +31,7 @@ class CalculadoraController < ApplicationController
       @calculadora.estado = params[:estado]        if params[:estado]
     else
       @contact = Contact.new(calculadora_params)
-      ContactMailer.contact_message(@contact).deliver! if Rails.env.production?
+      ContactMailer.contact_message(@contact, 'Orçamento').deliver! if Rails.env.production?
 
       @calculadora = Calculadora.new(calculadora_params)
 
