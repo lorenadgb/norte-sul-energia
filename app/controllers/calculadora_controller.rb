@@ -12,7 +12,7 @@ class CalculadoraController < ApplicationController
     if @calculadora.valid?
       if calculadora_params[:rede_eletrica] == 'nao'
         @contact = Contact.new(calculadora_params)
-        @contact.deliver
+        ContactMailer.contact_message(@contact).deliver!
         redirect_back(fallback_location: root_path)
       end
     else
