@@ -55,14 +55,14 @@ class CalculadoraController < ApplicationController
 
       # page 02
       pdf_page02.pages[0].textbox @calculadora.qtd_paineis.to_s + '',                                                  height: 10, width: 70, y: 570, x: 460, font_size: 12
-      pdf_page02.pages[0].textbox @calculadora.kwp.to_d.truncate(1).to_s + ' kWp',                                     height: 10, width: 70, y: 570, x: 340, font_size: 12
+      pdf_page02.pages[0].textbox @calculadora.kwp.to_s + ' kWp',                                                      height: 10, width: 70, y: 570, x: 340, font_size: 12
       pdf_page02.pages[0].textbox 'R$ ' + ActiveSupport::NumberHelper.number_to_delimited(@calculadora.media).to_s,    height: 10, width: 70, y: 570, x: 220, font_size: 12
       pdf_page02.pages[0].textbox @calculadora.geracao_media.to_s + " kWh",                                        height: 10, width: 70, y: 570, x: 120, font_size: 12
 
       pdf_page02.pages[0].textbox 'R$ ' + ActiveSupport::NumberHelper.number_to_delimited(@calculadora.economia_25_anos).to_s,    height: 10, width: 70, y: 450, x: 460, font_size: 12
       pdf_page02.pages[0].textbox 'R$ ' + ActiveSupport::NumberHelper.number_to_delimited(@calculadora.economia_anual).to_s,      height: 10, width: 70, y: 450, x: 360, font_size: 12
       pdf_page02.pages[0].textbox @calculadora.retorno.to_d.truncate(1).to_s + ' ANOS',                                           height: 10, width: 70, y: 450, x: 230, font_size: 12
-      pdf_page02.pages[0].textbox 'R$ ' + ActiveSupport::NumberHelper.number_to_delimited(@calculadora.investimento_minimo.round(2)).to_s, height: 10, width: 70, y: 450, x: 110, font_size: 12
+      pdf_page02.pages[0].textbox 'R$ ' + ActiveSupport::NumberHelper.number_to_delimited(@calculadora.media_aritmetica.round(2)).to_s, height: 10, width: 70, y: 450, x: 110, font_size: 12
 
 
       pdf = CombinePDF.new

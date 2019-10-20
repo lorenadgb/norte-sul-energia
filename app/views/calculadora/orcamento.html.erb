@@ -36,6 +36,7 @@
 
           <%= simple_form_for @calculadora, url: url_for(action: 'orcamento', controller: 'calculadora'), method: 'post' do |f| %>
             <%= f.hidden_field :media %>
+            <%= f.hidden_field :ajuste, value: @calculadora.ajuste %>
             <%= hidden_field_tag :previous_local_value, @calculadora.local %>
             <%= hidden_field_tag :previous_media_value, @calculadora.media %>
 

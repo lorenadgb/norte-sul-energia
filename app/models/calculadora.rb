@@ -15,25 +15,30 @@ class Calculadora
   }
 
   MEDIA_DIAS_POR_MES   = 30
-  MEDIA_HORAS_BRASIL   = 4
+  MEDIA_HORAS_BRASIL   = 5
   MEDIA_MINIMA         = 3800
   MEDIA_MAXIMA         = 4500
   NUMERO_MESES_ANO     = 12
   NUMERO_MESES_25_ANOS = NUMERO_MESES_ANO * 25
   POTENCIA_MEDIA_PLACA = 330
+  EFICIENCIA_PAINEL    = 0.83
 
   def self.human_attribute_name(attr, options = {}) # 'options' wasn't available in Rails 3, and prior versions.
     HUMANIZED_ATTRIBUTES[attr.to_sym] || super
   end
 
   def kwp
-    kw = media.to_f / ajuste_ou_default.to_f
+    kw = (media.to_f / ajuste_ou_default.to_f).round(2)
 
-    (kw / MEDIA_DIAS_POR_MES) / MEDIA_HORAS_BRASIL
+    step_1 = kw.to_f / MEDIA_DIAS_POR_MES.to_f
+    step_2 = step_1.to_f / MEDIA_HORAS_BRASIL.to_f
+    step_3 = step_2 / EFICIENCIA_PAINEL
+
+    step_3.round(2)
   end
 
   def ajuste_ou_default
-    ajuste.nil? ? get_taxa_sem_ajuste : ajuste
+    ajuste.nil? ? get_taxa_sem_ajuste : ajuste.to_f
   end
 
   def investimento_minimo
@@ -42,6 +47,10 @@ class Calculadora
 
   def investimento_maximo
     kwp * MEDIA_MAXIMA
+  end
+
+  def media_aritmetica
+    (investimento_minimo + investimento_maximo) / 2
   end
 
   def economia_mensal
@@ -57,7 +66,7 @@ class Calculadora
   end
 
   def retorno
-    (investimento_minimo / economia_mensal) / NUMERO_MESES_ANO
+    (media_aritmetica / economia_mensal) / NUMERO_MESES_ANO
   end
 
   def cidade_nome
@@ -65,7 +74,7 @@ class Calculadora
   end
 
   def qtd_paineis
-    (kwp / POTENCIA_MEDIA_PLACA * 100).to_i
+    ((kwp / POTENCIA_MEDIA_PLACA * 1000)).round
   end
 
   def geracao_media
