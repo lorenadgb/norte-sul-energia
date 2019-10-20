@@ -88,6 +88,8 @@ class Calculadora
       state.comercial
     when 'outro'
       state.outro
+    else
+      state.residencial
     end
 
   end

@@ -61,11 +61,11 @@
             </div>
 
             <div class="col-md-6">
-              <%= f.input :estado, prompt: 'ESTADO', collection: State.all, label: false, input_html: { class: 'form-control'}, sytle: 'padding-right: 1px' %>
+              <%= f.input :estado, prompt: 'ESTADO', collection: State.all, required: true, label: false, input_html: { class: 'form-control'}, sytle: 'padding-right: 1px' %>
             </div>
 
             <div class="col-md-6">
-              <%= f.input :cidade, prompt: 'CIDADE', collection: City.all, label: false, input_html: { class: 'form-control'} %>
+              <%= f.input :cidade, prompt: 'CIDADE', collection: City.all, required: true, label: false, input_html: { class: 'form-control'} %>
             </div>
 
             <div id="extra-space-orcamento"></div>
@@ -75,7 +75,7 @@
             </div>
 
             <div class="instalacao-wrapper">
-              <%= f.collection_radio_buttons(:local, [['residencial', '/icons/residencial_azul'], ['comercial', '/icons/comercial_azul'], ['outro', '/icons/outro_azul']], :first, :last, item_wrapper_tag: "div class='col-md-3 col-md-offset-1'", class: 'threads-opts') do |b| %>
+              <%= f.collection_radio_buttons(:local, [['residencial', '/icons/residencial_azul'], ['comercial', '/icons/comercial_azul'], ['outro', '/icons/outro_azul']], :first, :last, required: true, item_wrapper_tag: "div class='col-md-3 col-md-offset-1'", class: 'threads-opts') do |b| %>
                 <%= b.label { b.radio_button(class: 'threads-opts') + image_tag(b.text+'.png', style: 'width: 70%') + local_dictionary(b.text) } %>
               <% end %>
             </div>
