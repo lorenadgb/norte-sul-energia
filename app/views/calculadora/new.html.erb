@@ -134,6 +134,8 @@
         const startAmount = 7500;
 
         initPreferences = function () {
+            $('#calculadora_telefone').phoneBrazil();
+
             //Added, set initial value.
             $("#amount").val(startAmount);
             $("#duration").val(startAmount);
