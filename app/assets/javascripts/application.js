@@ -20,4 +20,6 @@
 //= require jquery.inputmask.extensions
 //= require jquery.inputmask.numeric.extensions
 //= require jquery.inputmask.date.extensions
+//= require bootstrap-editable
+//= require bootstrap-editable-rails
 //= require_tree .

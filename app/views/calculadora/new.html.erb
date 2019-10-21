@@ -144,6 +144,7 @@
             $("#duration-label").text(startAmount);
 
             update();
+            editValue();
 
             $('#calculadora_rede_eletrica_sim').next('img').attr("src", "/icons/check.png");
             $('#calculadora_rede_eletrica_nao').next('img').attr("src", "/icons/checkbox.png");
@@ -293,7 +294,48 @@
                 update(1,ui.value);
             }
         });
-        $('#slider a').html('<label> '+ startAmount +' </label>');
+
+        $('#slider a').html('<label class="editable"> '+ startAmount +' </label>');
+
+        editValue();
+
+        function editValue() {
+            $('#slider').on('click', "label.editable", function() {
+
+                var $lbl = $(this), o = parseInt($lbl.text()),
+                    $txt = $('<input type="number" class="editable-label-text" value="'+o+'" />');
+                $lbl.replaceWith($txt);
+                $txt.focus();
+
+                $txt.blur(function() {
+                    $txt.replaceWith($lbl);
+
+                })
+                    .keydown(function(evt){
+                        if(evt.keyCode == 13 || document.click()) {
+                            var no = $(this).val();
+                            $lbl.text(no);
+                            $txt.replaceWith($lbl);
+
+                            $("#slider" ).slider('value', no);
+                            $('#calculadora_media').val(no);
+                        }
+                    });
+
+                $txt.blur(function() {
+                    $txt.replaceWith($lbl);
+
+                }).focusout(function() {
+                    var no = $(this).val();
+                    $lbl.text(no);
+                    $txt.replaceWith($lbl);
+
+                    $("#slider" ).slider('value', no);
+                    $('#calculadora_media').val(no);
+                })
+
+            });
+        }
 
         //changed. now with parameter
         function update(slider,val) {
@@ -319,7 +361,10 @@
             $( "#total" ).val($total);
             $( "#total-label" ).text($total);
 
-            $('#slider a').html('<label> '+$amount+' </label>');
+            $('#slider a').html('<label class="editable">'+$amount+'</label>');
+
+
+            editValue();
 
             $('#calculadora_media').val($amount);
         }

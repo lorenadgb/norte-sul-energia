@@ -1645,6 +1645,15 @@ ul, ol {
   margin-bottom: 0px;
 }
 
+.editable-label-text {
+  background-color: transparent;
+  border-color: transparent;
+  width: 120px;
+  height: 40px;
+  padding-left: 50px;
+  text-align: center;
+}
+
 div.correct-paragraph {
   p:first-of-type {
     font-size: 23px;
