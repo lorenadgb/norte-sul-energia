@@ -62,7 +62,9 @@
               <h4 class="title card-title"><%= image_tag '/icons/resultado_sistema.png', style: 'height: 50px; border: 0; padding: 0' %>SISTEMA INDICADO</h4>
             </figcaption>
             <div class="bottom-wrap">
-              <p><%= number_with_delimiter(@calculadora.kwp.round(2)) %> kWp</p>
+              <div class="text-center">
+                <p style="padding-top: 16px; padding-bottom: 16px"><%= number_with_delimiter(@calculadora.kwp.round(2)) %> kWp</p>
+              </div>
               <hr style="height:2px;border:none;color:gray;background-color:gray;padding-left: 50px;width: 50px;">
               <p>Tamanho da Potência:</p>
               <p><%= number_with_delimiter(@calculadora.kwp.round(2)) %> kWp</p>
