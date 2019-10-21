@@ -209,7 +209,8 @@
                                 $("#calculadora_ajuste").val(data['state']['comercial']);
                                 break;
                             case 'outro':
-                                $("#calculadora_ajuste").val(data['state']['outro']);
+                                $("#calculadora_ajuste").val('');
+                                $("#calculadora_ajuste").focus();
                                 break;
                         }
                     }

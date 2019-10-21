@@ -36,7 +36,7 @@
 
           <%= simple_form_for @calculadora, url: url_for(action: 'orcamento', controller: 'calculadora'), method: 'post' do |f| %>
             <%= f.hidden_field :media %>
-            <%= f.hidden_field :ajuste, value: @calculadora.ajuste %>
+            <%#= f.hidden_field :ajuste, value: @calculadora.ajuste %>
             <%= hidden_field_tag :previous_local_value, @calculadora.local %>
             <%= hidden_field_tag :previous_media_value, @calculadora.media %>
 
@@ -82,6 +82,12 @@
             </div>
 
             <div class="row">
+              <div class="col-md-6 col-md-offset-3 ajuste">
+                <%= f.input :ajuste, required: true, label: false, placeholder: 'AJUSTE DA TARIFA EM R$', input_html: { class: 'form-control center-block', style: 'text-align: center;'} %>
+              </div>
+            </div>
+
+            <div class="row">
                 <p style="font-size: 26px; text-align: center; margin-top: 40px">CONSUMO MÉDIO MENSAL (KWH)</p>
               </div>
 
@@ -112,6 +118,7 @@
 <script>
     $(document).ready(function(){
         let startAmount = 7500;
+        var local = '';
 
         initPreferences = function () {
             $('#calculadora_telefone').phoneBrazil();
@@ -134,11 +141,23 @@
             update();
         }();
 
+        $('input').data('holder',$('input').attr('placeholder'));
+        $('input').focusin(function(){
+            $(this).attr('placeholder','');
+        });
+        $('input').focusout(function(){
+            $(this).attr('placeholder',$(this).data('holder'));
+        });
+
+
         $("input[name='calculadora[local]']").click(function(){
-            clickLocal($(this).val());
+            local = $(this).val();
+            getFeeByState(local);
+            clickLocal(local);
         });
 
         function clickLocal(type) {
+
             switch(type) {
                 case 'residencial':
                     $('#calculadora_local_residencial').next('img').attr("src", "/icons/residencial_amarelo.png");
@@ -160,6 +179,42 @@
                     $('#calculadora_local_outro').next('img').attr("src", "/icons/outro_amarelo.png");
 
                     break;
+            }
+        }
+
+        $("#calculadora_estado").change(function() {
+            getCitiesByState("id="+$("#calculadora_estado").val());
+
+            getFeeByState(local);
+        });
+
+        function getFeeByState(local) {
+
+            if(local != '' && $("#calculadora_estado").val() != undefined) {
+
+                $.ajax({
+                    type: 'GET',
+                    data:{
+                        state_id: $("#calculadora_estado").val(),
+                        local:    local,
+                    },
+                    url: '/fee_by_state/',
+
+                    success: function(data){
+                        switch(local) {
+                            case 'residencial':
+                                $("#calculadora_ajuste").val(data['state']['residencial']);
+                                break;
+                            case 'comercial':
+                                $("#calculadora_ajuste").val(data['state']['comercial']);
+                                break;
+                            case 'outro':
+                                $("#calculadora_ajuste").val('');
+                                $("#calculadora_ajuste").focus();
+                                break;
+                        }
+                    }
+                });
             }
         }
 

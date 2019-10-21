@@ -7,6 +7,7 @@ class Calculadora
 
   validates_presence_of :rede_eletrica, :estado, :cidade, :local, :ajuste, :media, if: :acesso_a_rede_eletrica?
   validates_presence_of :rede_eletrica, :nome, :telefone, :email, unless: :acesso_a_rede_eletrica?
+  validates_presence_of :ajuste
 
   HUMANIZED_ATTRIBUTES = {
       local:  'Tipo do local da instalação',
