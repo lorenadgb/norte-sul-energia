@@ -1847,3 +1847,26 @@ div.correct-paragraph {
   }
 }
 
+@media screen and (max-width: 1200px) {
+  .nav-left-text {
+    font-size: 40px !important;
+    margin-top: 0;
+    padding-top: 14px;
+    text-align: left;
+    color: #2d5c82;
+  }
+
+  .rdg-expertise-description-default {
+    min-height: 70px !important;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    width: 10px;
+  }
+
+  @keyframes rdg-expertise-bar-animation-keyframe-large {
+    0%   { height: 0; width: 0; }
+    100% { width: 16px; height: 70px !important; margin-right: 20px; margin-top: 20px }
+  }
+
+}
