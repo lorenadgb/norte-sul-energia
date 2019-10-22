@@ -1,13 +1,13 @@
 class Calculadora
   include ActiveModel::Model
 
-  attr_accessor :rede_eletrica, :estado, :cidade, :local, :ajuste, :media
+  attr_accessor :rede_eletrica, :estado, :cidade, :local, :ajuste, :media, :source
   attr_accessor :nome, :telefone, :email
   attr_accessor :pdf_name
 
-  validates_presence_of :rede_eletrica, :estado, :cidade, :local, :ajuste, :media, if: :acesso_a_rede_eletrica?
+  validates_presence_of :rede_eletrica, :estado, :cidade, :local, :media, if: :acesso_a_rede_eletrica?
   validates_presence_of :rede_eletrica, :nome, :telefone, :email, unless: :acesso_a_rede_eletrica?
-  validates_presence_of :ajuste
+  validates_presence_of :ajuste, unless: :offgrid?
 
   HUMANIZED_ATTRIBUTES = {
       local:  'Tipo do local da instalação',
@@ -86,6 +86,10 @@ class Calculadora
 
   def acesso_a_rede_eletrica?
     rede_eletrica == 'sim'
+  end
+
+  def offgrid?
+    source == 'off-grid'
   end
 
   def get_taxa_sem_ajuste

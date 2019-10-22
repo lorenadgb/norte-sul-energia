@@ -22,6 +22,7 @@
           <%= simple_form_for @calculadora, url: url_for(action: 'resultado', controller: 'calculadora', anchor: 'calculadora'), method: 'post' do |f| %>
             <%= hidden_field_tag :local_value %>
             <%= f.hidden_field :media %>
+            <%= f.hidden_field :source %>
 
 
               <% if @calculadora.errors.any? %>
@@ -236,9 +237,9 @@
         }
 
         $("input[name='calculadora[rede_eletrica]']").click(function(){
-            console.log(555);
             switch($(this).val()) {
                 case 'sim':
+                    $('#calculadora_source').val('');
                     $('#calculadora_rede_eletrica_sim').next('img').attr("src", "/icons/check.png");
                     $('#calculadora_rede_eletrica_nao').next('img').attr("src", "/icons/checkbox.png");
 
@@ -247,6 +248,7 @@
 
                     break;
                 case 'nao':
+                    $('#calculadora_source').val('off-grid');
                     $('#calculadora_rede_eletrica_sim').next('img').attr("src", "/icons/checkbox.png");
                     $('#calculadora_rede_eletrica_nao').next('img').attr("src", "/icons/check.png");
 

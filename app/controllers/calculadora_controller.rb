@@ -87,7 +87,7 @@ class CalculadoraController < ApplicationController
   private
 
   def calculadora_params
-    params.require(:calculadora).permit(:rede_eletrica, :estado, :cidade, :local, :ajuste, :media, :nome, :email, :telefone) if params[:calculadora]
+    params.require(:calculadora).permit(:rede_eletrica, :estado, :cidade, :local, :ajuste, :media, :nome, :email, :telefone, :source) if params[:calculadora]
   end
 
 end
