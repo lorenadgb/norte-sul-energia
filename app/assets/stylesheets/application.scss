@@ -667,9 +667,9 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 }
 
 .nav-left-text {
-  font-size: 55px;
+  font-size: 51px;
   margin-top: 0;
-  padding-top: 15px;
+  padding-top: 13px;
   text-align: left;
   color: #2d5c82;
 }
@@ -697,7 +697,7 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 .rdg-expertise-description span { margin-top: auto; }
 
 .rdg-expertise-description-default {
-  min-height: 40px;
+  min-height: 30px;
   display:flex;
   flex-direction:column;
   padding-bottom: 20px;
@@ -728,7 +728,7 @@ div.correct-paragraph-carousel {
 
 @keyframes rdg-expertise-bar-animation-keyframe-large {
   0%   { height: 0; width: 0; }
-  100% { width: 16px; height: 110px; margin-right: 20px; margin-top: 20px }
+  100% { width: 16px; height: 95px; margin-right: 20px; margin-top: 22px }
 }
 
 @keyframes rdg-expertise-bar-animation-keyframe-contact {
