@@ -147,16 +147,15 @@
             editValue();
         }();
 
-        $('input').data('holder',$('input').attr('placeholder'));
-        $('input').focusin(function(){
-            $(this).attr('placeholder','');
-        });
-        $('input').focusout(function(){
-            $(this).attr('placeholder',$(this).data('holder'));
-        });
+      $('#calculadora_ajuste').data('holder',$('#calculadora_ajuste').attr('placeholder'));
+      $('#calculadora_ajuste').focusin(function(){
+        $(this).attr('placeholder','');
+      });
+      $('#calculadora_ajuste').focusout(function(){
+        $(this).attr('placeholder',$(this).data('holder'));
+      });
 
-
-        $("input[name='calculadora[local]']").click(function(){
+      $("input[name='calculadora[local]']").click(function(){
             local = $(this).val();
             getFeeByState(local);
             clickLocal(local);

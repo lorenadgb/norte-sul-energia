@@ -45,13 +45,23 @@ class CalculadoraController < ApplicationController
       date     = Time.now.strftime('%d/%m/%Y')
       pdf_name = Time.now.to_i
 
-      pdf_page01 = CombinePDF.load "#{Rails.root}/public/pdf/proposta_comercial_01.pdf"
+      template_filename = "#{Rails.root}/public/pdf/proposta_comercial_01.pdf"
+      nome = @calculadora.nome
+
+      Prawn::Document.generate("#{Rails.root}/public/pdf/temp.pdf", :skip_page_creation => true) do
+        start_new_page(:template => template_filename)
+        bounding_box([0,80], :width => 525, :height => 30) do
+          text_box nome, :size => 15, :width => 525, :height => 300, align: :right
+        end
+      end
+
+      pdf_page01 = CombinePDF.load "#{Rails.root}/public/pdf/temp.pdf"
       pdf_page02 = CombinePDF.load "#{Rails.root}/public/pdf/proposta_comercial_02.pdf"
       pdf_page03 = CombinePDF.load "#{Rails.root}/public/pdf/proposta_comercial_03.pdf"
 
       # page 01
       pdf_page01.pages[0].textbox date,              height: 20, width: 70, y: 125, x: 490, font_size: 15
-      pdf_page01.pages[0].textbox @calculadora.nome, height: 10, width: 70, y: 110, x: 460, font_size: 15
+      # pdf_page01.pages[0].textbox @calculadora.nome, height: 10, width: 70, y: 110, x: 460, font_size: 15
 
       # page 02
       pdf_page02.pages[0].textbox @calculadora.qtd_paineis.to_s + '',                                                  height: 10, width: 70, y: 570, x: 460, font_size: 12
