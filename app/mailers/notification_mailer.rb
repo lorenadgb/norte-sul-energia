@@ -1,13 +1,17 @@
 class NotificationMailer < ActionMailer::Base
-  default from: 'donotreply@nortesulenergia.com'
+  default from: 'Norte Sul Energia <donotreply@nortesulenergia.com>'
 
-  def envia_pdf_cliente(calculadora, subject)
+  def envia_pdf_cliente(calculadora, subject, pdf)
+    attachments["orcamento.pdf"] = pdf
+
     @calculadora = calculadora
-    mail(to: 'lorenadgb@gmail.com', subject: subject)
+    mail(to: @calculadora.email, subject: subject)
   end
 
-  def envia_pdf_empresa(calculadora, subject)
+  def envia_pdf_empresa(calculadora, subject, pdf)
+    attachments["orcamento.pdf"] = pdf
+
     @calculadora = calculadora
-    mail(to: 'lorenadgb@gmail.com', subject: subject)
+    mail(to: 'contato@nortesulenergia.com', subject: subject)
   end
 end

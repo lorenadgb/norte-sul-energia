@@ -82,8 +82,8 @@ class CalculadoraController < ApplicationController
 
       # pdf.save "#{Rails.root}/public/pdf/output#{pdf_name}.pdf"
 
-      NotificationMailer.envia_pdf_cliente(@calculadora, 'Norte Sul Energia - Orçamento').deliver!
-      NotificationMailer.envia_pdf_empresa(@calculadora, 'Norte Sul Energia - Orçamento').deliver!
+      NotificationMailer.envia_pdf_cliente(@calculadora, 'Norte Sul Energia - Orçamento',pdf.to_pdf).deliver!
+      NotificationMailer.envia_pdf_empresa(@calculadora, 'Norte Sul Energia - Orçamento', pdf.to_pdf).deliver!
 
       send_data pdf.to_pdf, filename: 'orcamento.pdf', type: 'application/pdf; charset=utf-8', encoding: "utf8"
     end
