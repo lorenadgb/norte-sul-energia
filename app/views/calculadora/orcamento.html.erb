@@ -15,11 +15,13 @@
     <div class="box first">
 
       <div class="row">
-        <div class="col-md-12">
-          <div class="nav-left-text correct-paragraph">
-          <div class="rdg-expertise-description rdg-strategy-bg rdg-animated-delay-0-contact" style="float: left;"></div>
-            <p>O MELHOR INVESTIMENTO</p>
-            <p>SOLICITE UM ORÇAMENTO</p>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="nav-left-text correct-paragraph">
+            <div class="rdg-expertise-description rdg-strategy-bg rdg-animated-delay-0-contact" style="float: left;"></div>
+              <p>O MELHOR INVESTIMENTO</p>
+              <p>SOLICITE UM ORÇAMENTO</p>
+            </div>
           </div>
         </div>
       </div>
@@ -27,13 +29,16 @@
       <div class="row">
         <div class="col-md-12">
 
+          <div class="row">
           <p class="paragraph-inside">
             Para receber um orçamento sem compromisso da NORTE SUL basta preencher os campos do formulário
             abaixo. A nossa equipe entrará em contato o mais breve possível.
           </p>
+            </div>
 
           <br>
 
+          <div class="col-md-12">
           <%= simple_form_for @calculadora, url: url_for(action: 'orcamento', controller: 'calculadora'), method: 'post' do |f| %>
             <%= f.hidden_field :media %>
             <%#= f.hidden_field :ajuste, value: @calculadora.ajuste %>
@@ -108,7 +113,7 @@
             <center class="submit-content"> <%= f.button :submit, 'ENVIAR', :class=> "btn btn-primary", style: 'width: 250px' %> </center>
 
           <% end %>
-
+          </div>
         </div><!--/.box-->
       </div>
     </div>
