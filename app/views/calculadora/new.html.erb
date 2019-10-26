@@ -170,11 +170,11 @@
             $('#calculadora_ajuste').css('text-align','center');
         }();
 
-        $('input').data('holder',$('input').attr('placeholder'));
-        $('input').focusin(function(){
+        $('#calculadora_ajuste').data('holder',$('#calculadora_ajuste').attr('placeholder'));
+        $('#calculadora_ajuste').focusin(function(){
             $(this).attr('placeholder','');
         });
-        $('input').focusout(function(){
+        $('#calculadora_ajuste').focusout(function(){
             $(this).attr('placeholder',$(this).data('holder'));
         });
 
