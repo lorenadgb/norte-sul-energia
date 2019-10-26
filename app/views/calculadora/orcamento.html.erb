@@ -266,6 +266,12 @@
 
 
         function editValue() {
+
+          if($(".ui-slider-handle").is(":visible") == true){
+            $('.ui-slider-handle').css('left', '45%');
+          }
+
+
             $('#slider').on('click', "label.editable", function() {
 
                 var $lbl = $(this), o = parseInt($lbl.text()),
